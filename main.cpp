@@ -23,11 +23,12 @@ int main()
         cout << "agregarClase(clase)\n";
         cout << "agregarInscripcion(ciSocio, idClase, fecha)\n";
         cout << "borrarInscripcion(ciSocio, idClase)\n";
-        cout << "salir \n\n";
+        cout << "salir \n";
 
         fflush(stdin);
         fgets(comando, MAX_COMANDO, stdin);
 
+        // Busca el salto de linea y lo cambia por una finalización de string
         char *p = strchr(comando, '\n');
         if (p != NULL)
         {
