@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <string.h>
+#include <cstring>
 #include "Definiciones.h"
 
 using namespace std;
@@ -26,6 +27,12 @@ int main()
 
         fflush(stdin);
         fgets(comando, MAX_COMANDO, stdin);
+
+        char *p = strchr(comando, '\n');
+        if (p != NULL)
+        {
+            *p = '\0';
+        }
 
         opc = strtok(comando, "( ,)");
 
