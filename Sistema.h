@@ -2,12 +2,16 @@
 #define SISTEMA
 #include <string>
 #include "Definiciones.h"
+#include "Socio.h"
+#include "Inscripcion.h"
 #include "DtFecha.h"
 #include "DtClase.h"
 
 class Sistema
 {
 	private:
+		Socio* socios[MAX_SOCIOS];
+		int cantSocios;
 		
 	public:
 		Sistema();
