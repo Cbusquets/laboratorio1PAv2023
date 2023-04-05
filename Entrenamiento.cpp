@@ -9,7 +9,12 @@ Entrenamiento::Entrenamiento(int id, std::string nombre, Turno turno, bool enRam
 
 int Entrenamiento::cupo()
 {
-	return this->id;
+	if (this->enRambla){
+		return 20;
+	}
+	else{
+		
+	}
 }
 
 bool Entrenamiento::getEnRambla()

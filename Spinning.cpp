@@ -9,7 +9,8 @@ Spinning::Spinning(int id, std::string nombre, Turno turno, int cantBicicletas):
 
 int Spinning::cupo()
 {
-	return this->id;
+	//Para la clase de Spinning el cupo es igual a la cantidad de bicis
+	return getCantBicicletas();
 }
 
 int Spinning::getCantBicicletas()

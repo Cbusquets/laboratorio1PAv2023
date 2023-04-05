@@ -11,6 +11,7 @@ class DtSpinning: public DtClase
 		DtSpinning();
 		DtSpinning(int id, std::string nombre, Turno turno, bool enRambla);
 		bool getEnRambla();
+		std::string getenRamblaString();
         ~DtSpinning();
 };
 
