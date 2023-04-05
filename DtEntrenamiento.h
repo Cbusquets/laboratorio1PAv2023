@@ -11,6 +11,7 @@ class DtEntrenamiento: public DtClase
 		DtEntrenamiento();
 		DtEntrenamiento(int id, std::string nombre, Turno turno, int cantBicicletas);
 		int getCantBicicletas();
+		friend std::ostream& operator << (std::ostream &o,DtEntrenamiento &dt);
         ~DtEntrenamiento();
 };
 
