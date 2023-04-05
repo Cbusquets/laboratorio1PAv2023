@@ -15,7 +15,7 @@ class DtClase
 		DtClase(int id, std::string nombre, Turno turno);
 		int getId();
         std::string getNombre();
-        Turno getTurno();
+        std::string getTurno();
 		virtual ~DtClase();
 };
 
