@@ -2,7 +2,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <cstring>
+#include <exception>
 #include "Definiciones.h"
+#include "Sistema.h"
 
 using namespace std;
 
@@ -44,8 +46,15 @@ int main()
 
             if ((param1 != NULL) && (param2 != NULL))
             {
-                // To-DO llamada a agregarSocio()
-                cout << "Funcion " << opc << " con los parametros " << param1 << " " << param2 << "\n";
+                try
+                {
+                    Sistema obj;
+                    obj.agregarSocio(param1, param2);
+                }
+                catch (std::exception &e)
+                {
+                    std::cerr << "ERROR: " << e.what() << '\n';
+                }
             }
             else
             {
