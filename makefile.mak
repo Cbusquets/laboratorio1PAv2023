@@ -1,9 +1,9 @@
 todo: main.o Sistema.o Clase.o DtClase.o DtEntrenamiento.o DtFecha.o DtSocio.o DtSpinning.o Entrenamiento.o Inscripcion.o Socio.o Spinning.o Turno.o
 	g++ -Wall -o main main.o Sistema.o Clase.o DtClase.o DtEntrenamiento.o DtFecha.o DtSocio.o DtSpinning.o Entrenamiento.o Inscripcion.o Socio.o Spinning.o Turno.o
-main.o: main.cpppp
-	g++ -Wall -c main.cpppp
-Sistema.o: Sistema.cpppp Sistema.h
-	g++ -Wall -c Sistema.cpppp
+main.o: main.cpp
+	g++ -Wall -c main.cpp
+Sistema.o: Sistema.cpp Sistema.h
+	g++ -Wall -c Sistema.cpp
 Clase.o: Clase.cpp Clase.h
 	g++ -Wall -c Clase.cpp
 DtClase.o: DtClase.cpp DtClase.h
