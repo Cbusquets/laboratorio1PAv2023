@@ -1,5 +1,6 @@
-#include <Socio.h>
-#include <Definiciones.h>
+#include "Sistema.h"
+#include "Socio.h"
+#include "Definiciones.h"
 #include <iostream>
 #include <stdio.h>
 #include <string>
@@ -11,7 +12,9 @@ using namespace std;
 Socio *socios[MAX_SOCIOS];
 int sociosInscritos = 0;
 
-void agregarSocio(string ci, string nombre)
+Sistema::Sistema(){}
+
+void Sistema::agregarSocio(std::string ci, std::string nombre)
 {
     if (sociosInscritos < MAX_SOCIOS) // Valida que no se haya llegado al máximo cupo de socios
     {
@@ -43,3 +46,11 @@ void agregarSocio(string ci, string nombre)
         throw std::invalid_argument("No es posible agregar mas socios");
     }
 }
+
+void Sistema::agregarClase(DtClase& clase){}
+
+void Sistema::agregarInscripcion(std::string ciSocio, int idClase, DtFecha fecha){}
+
+void Sistema::borrarInscripcion(std::string ciSocio, int idClase){}
+
+Sistema::~Sistema(){}
