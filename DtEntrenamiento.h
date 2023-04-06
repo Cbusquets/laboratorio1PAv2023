@@ -1,6 +1,6 @@
 #ifndef DTENTRENAMIENTO
 #define DTENTRENAMIENTO
-#include "DtClase.h""
+#include "DtClase.h"
 
 class DtEntrenamiento: public DtClase
 {

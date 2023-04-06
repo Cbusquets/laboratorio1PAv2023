@@ -1,6 +1,8 @@
 #ifndef DTFECHA
 #define DTFECHA
 #include <iostream>
+#include <stdexcept>
+
 class DtFecha
 {
 	private:
