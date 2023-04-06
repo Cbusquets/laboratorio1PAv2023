@@ -13,7 +13,7 @@ int Entrenamiento::cupo()
 		return 20;
 	}
 	else{
-		
+		return 10;
 	}
 }
 
