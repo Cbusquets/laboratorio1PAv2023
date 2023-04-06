@@ -1,5 +1,4 @@
 #include "DtFecha.h"
-#include <stdexcept>
 
 DtFecha::DtFecha() {}
 
