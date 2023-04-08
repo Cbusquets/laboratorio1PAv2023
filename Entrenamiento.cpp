@@ -2,17 +2,19 @@
 
 Entrenamiento::Entrenamiento() {}
 
-Entrenamiento::Entrenamiento(int id, std::string nombre, Turno turno, bool enRambla):Clase(id, nombre, turno)
+Entrenamiento::Entrenamiento(int id, std::string nombre, Turno turno, bool enRambla) : Clase(id, nombre, turno)
 {
 	this->enRambla = enRambla;
 }
 
-int Entrenamiento::cupo()
+int Entrenamiento::Cupo()
 {
-	if (this->enRambla){
+	if (this->enRambla)
+	{
 		return 20;
 	}
-	else{
+	else
+	{
 		return 10;
 	}
 }
@@ -22,4 +24,9 @@ bool Entrenamiento::getEnRambla()
 	return this->enRambla;
 }
 
-Entrenamiento::~Entrenamiento(){}
+void Entrenamiento::setEnRambla(bool rambla)
+{
+	this->enRambla = rambla;
+}
+
+Entrenamiento::~Entrenamiento() {}
