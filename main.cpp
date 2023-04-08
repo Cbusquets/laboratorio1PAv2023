@@ -5,6 +5,8 @@
 #include <exception>
 #include "Definiciones.h"
 #include "Sistema.h"
+#include "DtSpinning.h"
+#include "DtEntrenamiento.h"
 
 using namespace std;
 
@@ -65,16 +67,55 @@ int main()
         }
         else if (strcasecmp(opc, "agregarClase") == 0)
         {
-            param1 = strtok(NULL, "( ,)");
+            int idClase;
+            string nombreClase;
+            int idTurno;
+            Turno turno;
+            int idTipoClase;
 
-            if (param1 != NULL)
+            cout << "Ingresa id de la clase: ";
+            cin >> idClase;
+            cout << "Ingresa el nombre de la clase: ";
+            cin >> nombreClase;
+
+            // Solicita el turno
+            do
             {
-                // To-DO llamada a agregarClase()
-                cout << "Funcion " << opc << " con los parametros " << param1 << "\n";
+                cout << "Ingresá el turno: \n   1) Mañana \n   2) Tarde \n   3) Noche\n";
+                cin >> idTurno;
+            } while ((idTurno != 1) || (idTurno != 2) || (idTurno != 3));
+
+            if (idTurno == 1)
+            {
+                turno = MANANA;
+            }
+            else if (idTurno == 2)
+            {
+                turno = TARDE;
+            }
+            else if (idTurno == 3)
+            {
+                turno = NOCHE;
+            }
+
+            // Pregunta tipo de clase
+            do
+            {
+                cout << "Ingresa el tipo de clase: \n   1) Spinning \n   2) Entrenamiento\n";
+                cin >> idTipoClase;
+            } while ((idTipoClase != 1) || (idTipoClase != 2));
+
+            if (idTipoClase == 1)
+            { // Crear clase Spinning
+                int cantBicis;
+                cout << "Ingrese la cantidad de bicis: ";
+                cin >> cantBicis;
+                DtSpinning cSpinning = DtSpinning(idClase, nombreClase, turno, cantBicis);
             }
             else
-            {
-                cout << " - ERROR: Faltan parámetros\n";
+            { // Crear clase Entrenamiento
+
+                // DtEntrenamiento(int id, std::string nombre, Turno turno, int cantBicicletas);
             }
         }
         else if (strcasecmp(opc, "agregarInscripcion") == 0)
