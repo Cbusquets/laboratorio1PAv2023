@@ -1,11 +1,6 @@
 #include "Sistema.h"
 #include "Socio.h"
 #include "Definiciones.h"
-#include <iostream>
-#include <stdio.h>
-#include <string>
-#include <cstring>
-#include <exception>
 
 using namespace std;
 

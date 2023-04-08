@@ -1,6 +1,10 @@
 #ifndef SISTEMA
 #define SISTEMA
 #include <string>
+#include <iostream>
+#include <stdio.h>
+#include <cstring>
+#include <exception>
 #include "Definiciones.h"
 #include "Socio.h"
 #include "Inscripcion.h"

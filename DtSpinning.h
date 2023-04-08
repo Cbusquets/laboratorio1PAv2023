@@ -1,6 +1,6 @@
 #ifndef DTSPINNING
 #define DTSPINNING
-#include "DtClase.h""
+#include "DtClase.h"
 
 class DtSpinning: public DtClase
 {
