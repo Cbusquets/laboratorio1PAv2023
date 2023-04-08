@@ -1,20 +1,31 @@
 #include "DtEntrenamiento.h"
+#include "Turno.h"
+#include <string>
 
 DtEntrenamiento::DtEntrenamiento() {}
 
-DtEntrenamiento::DtEntrenamiento(int id, std::string nombre, Turno turno, int cantBicicletas):DtClase(id, nombre, turno)
+DtEntrenamiento::DtEntrenamiento(int id, std::string nombre, Turno turno, bool enRambla) : DtClase(id, nombre, turno)
 {
-	this->cantBicicletas = cantBicicletas;
+
+	this->enRambla = enRambla;
 }
 
-int DtEntrenamiento::getCantBicicletas()
+bool DtEntrenamiento::getEnRambla()
 {
-	return this->cantBicicletas;
+	return this->enRambla;
 }
 
-std::ostream& operator << (std::ostream &o, DtEntrenamiento& dt)
+std::string DtEntrenamiento::getenRamblaString()
 {
-	return o << "ID: " << dt.getId() << "\nNombre: " << dt.getNombre() << "\nTurno: " << dt.getTurno() << "\nCantidad de Bicicletas: " << dt.getCantBicicletas() << std::endl;
+	if (this->enRambla)
+		return "Sí";
+	else
+		return "No";
 }
 
-DtEntrenamiento::~DtEntrenamiento(){}
+std::ostream &operator<<(std::ostream &o, DtEntrenamiento &dt)
+{
+	return o << "ID: " << dt.getId() << "\nNombre: " << dt.getNombre() << "\nTurno: " << dt.getTurno() << "\nEn Rambla: " << dt.getenRamblaString() << std::endl;
+}
+
+DtEntrenamiento::~DtEntrenamiento() {}
