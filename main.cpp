@@ -55,12 +55,12 @@ int main()
                 }
                 catch (std::exception &e)
                 {
-                    std::cerr << "ERROR: " << e.what() << '\n';
+                    std::cerr << " - ERROR: " << e.what() << '\n';
                 }
             }
             else
             {
-                cout << "ERROR - Faltan parámetros\n";
+                cout << " - ERROR: Faltan parámetros\n";
             }
         }
         else if (strcasecmp(opc, "agregarClase") == 0)
@@ -74,7 +74,7 @@ int main()
             }
             else
             {
-                cout << "ERROR - Faltan parámetros\n";
+                cout << " - ERROR: Faltan parámetros\n";
             }
         }
         else if (strcasecmp(opc, "agregarInscripcion") == 0)
@@ -90,7 +90,7 @@ int main()
             }
             else
             {
-                cout << "ERROR - Faltan parámetros\n";
+                cout << " - ERROR: Faltan parámetros\n";
             }
         }
         else if (strcasecmp(opc, "borrarInscripcion") == 0)
@@ -105,7 +105,7 @@ int main()
             }
             else
             {
-                cout << "ERROR - Faltan parámetros\n";
+                cout << " - ERROR: Faltan parámetros\n";
             }
         }
         else if (strcasecmp(opc, "salir") == 0)
@@ -114,7 +114,7 @@ int main()
         }
         else
         {
-            cout << "ERROR - Opcion incorrecta";
+            cout << " - ERROR: Opcion incorrecta";
         }
 
     } while (!salir);
