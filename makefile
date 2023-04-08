@@ -18,12 +18,12 @@ DtSpinning.o: DtSpinning.cpp DtSpinning.h
 	g++ -Wall -c DtSpinning.cpp
 Entrenamiento.o: Entrenamiento.cpp Entrenamiento.h
 	g++ -Wall -c Entrenamiento.cpp
-Inscripcion.o: Entrenamiento.cpp Entrenamiento.h
-	g++ -Wall -c Entrenamiento.cpp
+Inscripcion.o: Inscripcion.cpp Inscripcion.h
+	g++ -Wall -c Inscripcion.cpp
 Socio.o: Socio.cpp Socio.h
 	g++ -Wall -c Socio.cpp Socio.h
 Spinning.o: Spinning.cpp Spinning.h
-	g++ -Wall -c Spinning.cpp
+	g++ -Wall -c Spinning.cpp 
 Turno.o: Turno.cpp Turno.h
 	g++ -Wall -c Turno.cpp
 clean:
