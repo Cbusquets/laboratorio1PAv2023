@@ -20,12 +20,14 @@ int main()
         param1 = NULL;
         param2 = NULL;
         param3 = NULL;
-        cout << "\nElegi la opcion que desees\n \n";
+        cout << "\n----------------------------\n";
+        cout << "Elegi la opcion que desees\n \n";
         cout << "agregarSocio(ci, nombre)\n";
         cout << "agregarClase(clase)\n";
         cout << "agregarInscripcion(ciSocio, idClase, fecha)\n";
         cout << "borrarInscripcion(ciSocio, idClase)\n";
         cout << "salir \n";
+        cout << "----------------------------\n\n";
 
         fflush(stdin);
         fgets(comando, MAX_COMANDO, stdin);
