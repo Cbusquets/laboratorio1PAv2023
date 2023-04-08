@@ -25,7 +25,7 @@ int main()
         cout << "\n----------------------------\n";
         cout << "Elegi la opcion que desees\n \n";
         cout << "agregarSocio(ci, nombre)\n";
-        cout << "agregarClase(clase)\n";
+        cout << "agregarClase\n";
         cout << "agregarInscripcion(ciSocio, idClase, fecha)\n";
         cout << "borrarInscripcion(ciSocio, idClase)\n";
         cout << "salir \n";
@@ -72,6 +72,8 @@ int main()
             int idTurno;
             Turno turno;
             int idTipoClase;
+            DtSpinning cSpinning;
+            DtEntrenamiento cEntrenamiento;
 
             cout << "Ingresa id de la clase: ";
             cin >> idClase;
@@ -83,7 +85,7 @@ int main()
             {
                 cout << "Ingresá el turno: \n   1) Mañana \n   2) Tarde \n   3) Noche\n";
                 cin >> idTurno;
-            } while ((idTurno != 1) || (idTurno != 2) || (idTurno != 3));
+            } while ((idTurno < 1) || (idTurno > 3));
 
             if (idTurno == 1)
             {
@@ -103,19 +105,59 @@ int main()
             {
                 cout << "Ingresa el tipo de clase: \n   1) Spinning \n   2) Entrenamiento\n";
                 cin >> idTipoClase;
-            } while ((idTipoClase != 1) || (idTipoClase != 2));
+            } while ((idTipoClase < 1) || (idTipoClase > 2));
 
+            // Crea el tipo de clase especifico
             if (idTipoClase == 1)
             { // Crear clase Spinning
                 int cantBicis;
+
                 cout << "Ingrese la cantidad de bicis: ";
                 cin >> cantBicis;
-                DtSpinning cSpinning = DtSpinning(idClase, nombreClase, turno, cantBicis);
+
+                cSpinning = DtSpinning(idClase, nombreClase, turno, cantBicis);
+                Sistema obj;
+
+                try
+                {
+                    obj.agregarClase(cSpinning);
+                }
+                catch (invalid_argument &error)
+                {
+                    cout << error.what();
+                }
             }
             else
             { // Crear clase Entrenamiento
+                int intEnRambla;
+                bool enRambla;
 
-                // DtEntrenamiento(int id, std::string nombre, Turno turno, int cantBicicletas);
+                do
+                {
+                    cout << "¿Deseas que la clase sea en la rambla? \n   1) Sí \n   2) No \n";
+                    cin >> intEnRambla;
+                } while ((intEnRambla < 1) || (intEnRambla > 2));
+
+                if (intEnRambla == 1)
+                {
+                    enRambla = true;
+                }
+                else
+                {
+                    enRambla = false;
+                }
+
+                cEntrenamiento = DtEntrenamiento(idClase, nombreClase, turno, enRambla);
+                Sistema obj;
+
+                try
+                {
+                    obj.agregarClase(cEntrenamiento);
+                }
+                catch (invalid_argument &error)
+                {
+                    cout << error.what();
+                }
             }
         }
         else if (strcasecmp(opc, "agregarInscripcion") == 0)
