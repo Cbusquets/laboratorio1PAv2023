@@ -9,6 +9,7 @@
 #include "DtEntrenamiento.h"
 
 using namespace std;
+using std::cin;
 
 int main()
 {
@@ -22,6 +23,7 @@ int main()
         param1 = NULL;
         param2 = NULL;
         param3 = NULL;
+
         cout << "\n----------------------------\n";
         cout << "Elegi la opcion que desees\n \n";
         cout << "agregarSocio(ci, nombre)\n";
@@ -67,6 +69,7 @@ int main()
         }
         else if (strcasecmp(opc, "agregarClase") == 0)
         {
+            param1 = strtok(NULL, "( ,)");
             int idClase;
             string nombreClase;
             int idTurno;
@@ -199,6 +202,8 @@ int main()
         {
             cout << " - ERROR: Opcion incorrecta";
         }
+
+        cin.ignore();
 
     } while (!salir);
 
