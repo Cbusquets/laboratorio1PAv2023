@@ -37,6 +37,7 @@ void Sistema::agregarSocio(std::string ci, std::string nombre)
             Socio *s = new Socio(ci, nombre);
             socios[sociosInscritos] = s;
             sociosInscritos++;
+            cout << "OK - '" << nombre << "' fue agregado correctamente." << '\n';
         }
     }
     else
