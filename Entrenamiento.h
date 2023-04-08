@@ -2,17 +2,18 @@
 #define ENTRENAMIENTO
 #include "Clase.h"
 
-class Entrenamiento: public Clase
+class Entrenamiento : public Clase
 {
-	private:
-		bool enRambla;
+private:
+	bool enRambla;
 
-	public:
-		Entrenamiento();
-		Entrenamiento(int id, std::string nombre, Turno turno, bool enRambla);
-		bool getEnRambla();
-        int cupo();
-        ~Entrenamiento();
+public:
+	Entrenamiento();
+	Entrenamiento(int id, std::string nombre, Turno turno, bool enRambla);
+	bool getEnRambla();
+	void setEnRambla(bool rambla);
+	int Cupo();
+	~Entrenamiento();
 };
 
 #endif

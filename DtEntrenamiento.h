@@ -2,17 +2,18 @@
 #define DTENTRENAMIENTO
 #include "DtClase.h"
 
-class DtEntrenamiento: public DtClase
+class DtEntrenamiento : public DtClase
 {
-	private:
-		int cantBicicletas;
+private:
+	bool enRambla;
 
-	public:
-		DtEntrenamiento();
-		DtEntrenamiento(int id, std::string nombre, Turno turno, int cantBicicletas);
-		int getCantBicicletas();
-		friend std::ostream& operator << (std::ostream &o,DtEntrenamiento &dt);
-        ~DtEntrenamiento();
+public:
+	DtEntrenamiento();
+	DtEntrenamiento(int id, std::string nombre, Turno turno, bool enRambla);
+	bool getEnRambla();
+	std::string getenRamblaString();
+	friend std::ostream &operator<<(std::ostream &o, DtEntrenamiento &dt);
+	~DtEntrenamiento();
 };
 
 #endif

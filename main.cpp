@@ -5,6 +5,8 @@
 #include <exception>
 #include "Definiciones.h"
 #include "Sistema.h"
+#include "DtSpinning.h"
+#include "DtEntrenamiento.h"
 
 using namespace std;
 
@@ -20,12 +22,14 @@ int main()
         param1 = NULL;
         param2 = NULL;
         param3 = NULL;
-        cout << "\nElegi la opcion que desees\n \n";
+        cout << "\n----------------------------\n";
+        cout << "Elegi la opcion que desees\n \n";
         cout << "agregarSocio(ci, nombre)\n";
-        cout << "agregarClase(clase)\n";
+        cout << "agregarClase\n";
         cout << "agregarInscripcion(ciSocio, idClase, fecha)\n";
         cout << "borrarInscripcion(ciSocio, idClase)\n";
         cout << "salir \n";
+        cout << "----------------------------\n\n";
 
         fflush(stdin);
         fgets(comando, MAX_COMANDO, stdin);
@@ -53,26 +57,107 @@ int main()
                 }
                 catch (std::exception &e)
                 {
-                    std::cerr << "ERROR: " << e.what() << '\n';
+                    std::cerr << " - ERROR: " << e.what() << '\n';
                 }
             }
             else
             {
-                cout << "ERROR - Faltan parámetros\n";
+                cout << " - ERROR: Faltan parámetros\n";
             }
         }
         else if (strcasecmp(opc, "agregarClase") == 0)
         {
-            param1 = strtok(NULL, "( ,)");
+            int idClase;
+            string nombreClase;
+            int idTurno;
+            Turno turno;
+            int idTipoClase;
+            DtSpinning cSpinning;
+            DtEntrenamiento cEntrenamiento;
 
-            if (param1 != NULL)
+            cout << "Ingresa id de la clase: ";
+            cin >> idClase;
+            cout << "Ingresa el nombre de la clase: ";
+            cin >> nombreClase;
+
+            // Solicita el turno
+            do
             {
-                // To-DO llamada a agregarClase()
-                cout << "Funcion " << opc << " con los parametros " << param1 << "\n";
+                cout << "Ingresá el turno: \n   1) Mañana \n   2) Tarde \n   3) Noche\n";
+                cin >> idTurno;
+            } while ((idTurno < 1) || (idTurno > 3));
+
+            if (idTurno == 1)
+            {
+                turno = MANANA;
+            }
+            else if (idTurno == 2)
+            {
+                turno = TARDE;
+            }
+            else if (idTurno == 3)
+            {
+                turno = NOCHE;
+            }
+
+            // Pregunta tipo de clase
+            do
+            {
+                cout << "Ingresa el tipo de clase: \n   1) Spinning \n   2) Entrenamiento\n";
+                cin >> idTipoClase;
+            } while ((idTipoClase < 1) || (idTipoClase > 2));
+
+            // Crea el tipo de clase especifico
+            if (idTipoClase == 1)
+            { // Crear clase Spinning
+                int cantBicis;
+
+                cout << "Ingrese la cantidad de bicis: ";
+                cin >> cantBicis;
+
+                cSpinning = DtSpinning(idClase, nombreClase, turno, cantBicis);
+                Sistema obj;
+
+                try
+                {
+                    obj.agregarClase(cSpinning);
+                }
+                catch (invalid_argument &error)
+                {
+                    cout << error.what();
+                }
             }
             else
-            {
-                cout << "ERROR - Faltan parámetros\n";
+            { // Crear clase Entrenamiento
+                int intEnRambla;
+                bool enRambla;
+
+                do
+                {
+                    cout << "¿Deseas que la clase sea en la rambla? \n   1) Sí \n   2) No \n";
+                    cin >> intEnRambla;
+                } while ((intEnRambla < 1) || (intEnRambla > 2));
+
+                if (intEnRambla == 1)
+                {
+                    enRambla = true;
+                }
+                else
+                {
+                    enRambla = false;
+                }
+
+                cEntrenamiento = DtEntrenamiento(idClase, nombreClase, turno, enRambla);
+                Sistema obj;
+
+                try
+                {
+                    obj.agregarClase(cEntrenamiento);
+                }
+                catch (invalid_argument &error)
+                {
+                    cout << error.what();
+                }
             }
         }
         else if (strcasecmp(opc, "agregarInscripcion") == 0)
@@ -88,7 +173,7 @@ int main()
             }
             else
             {
-                cout << "ERROR - Faltan parámetros\n";
+                cout << " - ERROR: Faltan parámetros\n";
             }
         }
         else if (strcasecmp(opc, "borrarInscripcion") == 0)
@@ -103,7 +188,7 @@ int main()
             }
             else
             {
-                cout << "ERROR - Faltan parámetros\n";
+                cout << " - ERROR: Faltan parámetros\n";
             }
         }
         else if (strcasecmp(opc, "salir") == 0)
@@ -112,7 +197,7 @@ int main()
         }
         else
         {
-            cout << "ERROR - Opcion incorrecta";
+            cout << " - ERROR: Opcion incorrecta";
         }
 
     } while (!salir);
