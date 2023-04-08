@@ -9,7 +9,7 @@ DtSpinning::DtSpinning(int id, std::string nombre, Turno turno, bool enRambla):D
 
 bool DtSpinning::getEnRambla()
 {
-    this->enRambla = enRambla;
+    return this->enRambla;
 }
 
 std::string DtSpinning::getenRamblaString()
