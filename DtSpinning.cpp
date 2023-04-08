@@ -2,35 +2,19 @@
 
 DtSpinning::DtSpinning() {}
 
-DtSpinning::DtSpinning(int id, std::string nombre, Turno turno, bool enRambla):DtClase(id, nombre, turno)
+DtSpinning::DtSpinning(int id, std::string nombre, Turno turno, int cantBicicletas) : DtClase(id, nombre, turno)
 {
-	this->enRambla = enRambla;
+	this->cantBicicletas = cantBicicletas;
 }
 
-bool DtSpinning::getEnRambla()
+int DtSpinning::getCantBicicletas()
 {
-    return this->enRambla;
+	return this->cantBicicletas;
 }
 
-std::string DtSpinning::getenRamblaString()
+std::ostream &operator<<(std::ostream &o, DtSpinning &dt)
 {
-    std::string result;
-
-	switch (this->enRambla)
-	{
-		case true:
-			result = "Si";
-			break;
-		case false:
-			result = "No";
-			break;
-	}
-	return result;
+	return o << "ID: " << dt.getId() << "\nNombre: " << dt.getNombre() << "\nTurno: " << dt.getTurno() << "\nCantidad de bicicletas: " << dt.getCantBicicletas() << std::endl;
 }
 
-std::ostream& operator << (std::ostream &o, DtSpinning& dt)
-{
-	return o << "ID: " << dt.getId() << "\nNombre: " << dt.getNombre() << "\nTurno: " << dt.getTurno() << "\nEn Rambla: " << dt.getenRamblaString() << std::endl;
-}
-
-DtSpinning::~DtSpinning(){}
+DtSpinning::~DtSpinning() {}

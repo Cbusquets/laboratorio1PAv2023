@@ -2,17 +2,16 @@
 #define DTSPINNING
 #include "DtClase.h"
 
-class DtSpinning: public DtClase
+class DtSpinning : public DtClase
 {
-	private:
-		bool enRambla;
+private:
+	int cantBicicletas;
 
-	public:
-		DtSpinning();
-		DtSpinning(int id, std::string nombre, Turno turno, bool enRambla);
-		bool getEnRambla();
-		std::string getenRamblaString();
-        ~DtSpinning();
+public:
+	DtSpinning();
+	DtSpinning(int id, std::string nombre, Turno turno, int cantBicicletas);
+	int getCantBicicletas();
+	~DtSpinning();
 };
 
 #endif

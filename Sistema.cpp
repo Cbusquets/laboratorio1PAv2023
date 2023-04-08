@@ -7,7 +7,7 @@ using namespace std;
 Socio *socios[MAX_SOCIOS];
 int sociosInscritos = 0;
 
-Sistema::Sistema(){}
+Sistema::Sistema() {}
 
 void Sistema::agregarSocio(std::string ci, std::string nombre)
 {
@@ -43,10 +43,10 @@ void Sistema::agregarSocio(std::string ci, std::string nombre)
     }
 }
 
-void Sistema::agregarClase(DtClase& clase){}
+void Sistema::agregarClase(DtClase &clase) {}
 
-void Sistema::agregarInscripcion(std::string ciSocio, int idClase, DtFecha fecha){}
+void Sistema::agregarInscripcion(std::string ciSocio, int idClase, DtFecha fecha) {}
 
-void Sistema::borrarInscripcion(std::string ciSocio, int idClase){}
+void Sistema::borrarInscripcion(std::string ciSocio, int idClase) {}
 
-Sistema::~Sistema(){}
+Sistema::~Sistema() {}
