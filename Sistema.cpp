@@ -2,14 +2,15 @@
 
 using namespace std;
 
-Socio *socios[MAX_SOCIOS];
-int sociosInscritos = 0;
-Clase *clases[MAX_CLASES];
-int cantClasesCreadas = 0;
+Sistema::Sistema() {
+    this->sociosInscritos=0;
+    this->cantClasesCreadas=0;
+    for(int index=0; index<MAX_CLASES;index++){
+        clases[index]=NULL;
+    }
+}
 
-Sistema::Sistema() {}
-
-void Sistema::agregarSocio(std::string ci, std::string nombre)
+void Sistema::agregarSocio(string ci, string nombre)
 {
     if (sociosInscritos < MAX_SOCIOS) // Valida que no se haya llegado al máximo cupo de socios
     {
@@ -27,7 +28,7 @@ void Sistema::agregarSocio(std::string ci, std::string nombre)
 
         if (existeSocio)
         {
-            throw std::invalid_argument("No es posible agregar mas socios");
+            throw invalid_argument("No es posible agregar mas socios");
         }
         else
         {
@@ -39,7 +40,7 @@ void Sistema::agregarSocio(std::string ci, std::string nombre)
     }
     else
     {
-        throw std::invalid_argument("No es posible agregar mas socios");
+        throw invalid_argument("No es posible agregar mas socios");
     }
 }
 
@@ -49,25 +50,27 @@ void Sistema::agregarClase(DtClase &clase)
     { // Valida que no se haya llegado al tope de clases
         bool existeClase = false;
         int iter = 0;
-        cout << "iter::"<<iter<<"cantClasesCreadas::"<<cantClasesCreadas<<endl;
-        cout << "!existeClase::" << !existeClase << endl;
-
+        // cout << "iter::"<<iter<<"::cantClasesCreadas::"<<cantClasesCreadas<<endl;
+        // cout << "!existeClase::" << !existeClase << endl;
+        // cout << "clases[iter]::" << (clases[iter]==NULL) << endl;
         while ((!existeClase) && (iter <= cantClasesCreadas)) // Verifica que no exista otra clase con el mismo id
         {
-            cout << "Before IF line 57 "<< clase.getId() << endl;
-            //if(clases[iter] != null){}
-            if (clases[iter]->getId() == clase.getId())
-            {
-                existeClase = true;
-            } else {
-                cout << "Inside else line 62 "<< clases[iter]->getId()<<endl;
+            // cout << "Before IF line 57 "<< clase.getId() << endl;
+            if(clases[iter] != NULL){
+                if (clases[iter]->getId() == clase.getId())
+                {
+                    existeClase = true;
+                } 
+                // else {
+                    // cout << "Inside else line 62 "<< clases[iter]->getId()<<endl;
+                // }
             }
             iter++;
         }
 
         if (existeClase)
         {
-            throw std::invalid_argument("Ya existe una clase con este id");
+            throw invalid_argument("Ya existe una clase con este id");
         }
         else
         {
@@ -78,18 +81,19 @@ void Sistema::agregarClase(DtClase &clase)
                 DtEntrenamiento *dtEntrenamiento= dynamic_cast<DtEntrenamiento*>(&clase);
                 clases[cantClasesCreadas]=new Entrenamiento(dtEntrenamiento->getId(), dtEntrenamiento->getNombre(), dtEntrenamiento->getTurno(), dtEntrenamiento->getEnRambla());
             }
-            
             cout << clases[cantClasesCreadas]->getNombre();
+            cantClasesCreadas++;
+            
         }
     }
     else
     {
-        throw std::invalid_argument("No es posible crear más clases");
+        throw invalid_argument("No es posible crear más clases");
     }
 }
 
-void Sistema::agregarInscripcion(std::string ciSocio, int idClase, DtFecha fecha) {}
+void Sistema::agregarInscripcion(string ciSocio, int idClase, DtFecha fecha) {}
 
-void Sistema::borrarInscripcion(std::string ciSocio, int idClase) {}
+void Sistema::borrarInscripcion(string ciSocio, int idClase) {}
 
 Sistema::~Sistema() {}
