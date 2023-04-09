@@ -1,5 +1,5 @@
-#ifndef ENTRENAMIENTO
-#define ENTRENAMIENTO
+#ifndef ENTRENAMIENTO_H
+#define ENTRENAMIENTO_H
 #include "Clase.h"
 
 class Entrenamiento : public Clase

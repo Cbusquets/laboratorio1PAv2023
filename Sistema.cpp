@@ -1,7 +1,4 @@
 #include "Sistema.h"
-#include "Socio.h"
-#include "Definiciones.h"
-#include "Clase.h"
 
 using namespace std;
 
@@ -52,12 +49,18 @@ void Sistema::agregarClase(DtClase &clase)
     { // Valida que no se haya llegado al tope de clases
         bool existeClase = false;
         int iter = 0;
+        cout << "iter::"<<iter<<"cantClasesCreadas::"<<cantClasesCreadas<<endl;
+        cout << "!existeClase::" << !existeClase << endl;
 
-        while ((!existeClase) && (iter < cantClasesCreadas)) // Verifica que no exista otra clase con el mismo id
+        while ((!existeClase) && (iter <= cantClasesCreadas)) // Verifica que no exista otra clase con el mismo id
         {
+            cout << "Before IF line 57 "<< clase.getId() << endl;
+            //if(clases[iter] != null){}
             if (clases[iter]->getId() == clase.getId())
             {
                 existeClase = true;
+            } else {
+                cout << "Inside else line 62 "<< clases[iter]->getId()<<endl;
             }
             iter++;
         }
@@ -68,7 +71,15 @@ void Sistema::agregarClase(DtClase &clase)
         }
         else
         {
-            cout << "Test: clase agregada";
+            if(clase.getType() == 0){
+                DtSpinning *dtSpinning= dynamic_cast<DtSpinning*>(&clase);
+                clases[cantClasesCreadas]=new Spinning(dtSpinning->getId(), dtSpinning->getNombre(), dtSpinning->getTurno(), dtSpinning->getCantBicicletas());
+            } else {
+                DtEntrenamiento *dtEntrenamiento= dynamic_cast<DtEntrenamiento*>(&clase);
+                clases[cantClasesCreadas]=new Entrenamiento(dtEntrenamiento->getId(), dtEntrenamiento->getNombre(), dtEntrenamiento->getTurno(), dtEntrenamiento->getEnRambla());
+            }
+            
+            cout << clases[cantClasesCreadas]->getNombre();
         }
     }
     else

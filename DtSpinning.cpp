@@ -1,8 +1,9 @@
 #include "DtSpinning.h"
+#include "Definiciones.h"
 
 DtSpinning::DtSpinning() {}
 
-DtSpinning::DtSpinning(int id, std::string nombre, Turno turno, int cantBicicletas) : DtClase(id, nombre, turno)
+DtSpinning::DtSpinning(int id, std::string nombre, Turno turno, int cantBicicletas, claseType type) : DtClase(id, nombre, turno, type)
 {
 	this->cantBicicletas = cantBicicletas;
 }

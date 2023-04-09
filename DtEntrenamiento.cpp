@@ -1,10 +1,11 @@
 #include "DtEntrenamiento.h"
 #include "Turno.h"
+#include "Definiciones.h"
 #include <string>
 
 DtEntrenamiento::DtEntrenamiento() {}
 
-DtEntrenamiento::DtEntrenamiento(int id, std::string nombre, Turno turno, bool enRambla) : DtClase(id, nombre, turno)
+DtEntrenamiento::DtEntrenamiento(int id, std::string nombre, Turno turno, bool enRambla, claseType type) : DtClase(id, nombre, turno, type)
 {
 
 	this->enRambla = enRambla;

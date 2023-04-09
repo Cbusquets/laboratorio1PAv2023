@@ -1,5 +1,5 @@
-#ifndef SOCIO
-#define SOCIO
+#ifndef SOCIO_H
+#define SOCIO_H
 #include <string>
 
 class Socio

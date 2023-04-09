@@ -1,12 +1,14 @@
 #include "DtClase.h"
+#include "Definiciones.h"
 
 DtClase::DtClase() {}
 
-DtClase::DtClase(int id, std::string nombre, Turno turno)
+DtClase::DtClase(int id, std::string nombre, Turno turno, claseType type)
 {
 	this->id = id;
     this->nombre = nombre;
     this->turno = turno;
+	this->type=type;
 }
 
 int DtClase::getId()
@@ -19,7 +21,7 @@ std::string DtClase::getNombre()
     return this->nombre;
 }
 
-std::string DtClase::getTurno()
+std::string DtClase::getTurnoString()
 {
     std::string result;
 
@@ -36,6 +38,15 @@ std::string DtClase::getTurno()
 			break;
 	}
 	return result;
+}
+
+Turno DtClase::getTurno()
+{
+	return this->turno;
+}
+
+claseType DtClase::getType(){
+	return this->type;
 }
 
 DtClase::~DtClase(){}
