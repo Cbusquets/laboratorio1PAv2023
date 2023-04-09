@@ -1,5 +1,5 @@
-#ifndef ENTRENAMIENTO
-#define ENTRENAMIENTO
+#ifndef ENTRENAMIENTO_H
+#define ENTRENAMIENTO_H
 #include "Clase.h"
 
 class Entrenamiento : public Clase
@@ -12,7 +12,7 @@ public:
 	Entrenamiento(int id, std::string nombre, Turno turno, bool enRambla);
 	bool getEnRambla();
 	void setEnRambla(bool rambla);
-	int Cupo();
+	virtual int cupo();
 	~Entrenamiento();
 };
 

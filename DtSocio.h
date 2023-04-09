@@ -1,5 +1,5 @@
-#ifndef DTSOCIO
-#define DTSOCIO
+#ifndef DTSOCIO_H
+#define DTSOCIO_H
 #include <string>
 #include <iostream>
 class DtSocio
