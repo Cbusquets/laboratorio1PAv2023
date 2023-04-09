@@ -28,4 +28,5 @@ Turno.o: Turno.cpp Turno.h
 	g++ -Wall -c Turno.cpp
 clean:
 	rm -f *.o
+	rm -f *.h.gch
 	rm -f main

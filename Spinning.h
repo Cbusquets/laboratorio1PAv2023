@@ -1,5 +1,5 @@
-#ifndef SPINNING
-#define SPINNING
+#ifndef SPINNING_H
+#define SPINNING_H
 #include "Clase.h"
 
 class Spinning: public Clase
@@ -11,7 +11,7 @@ class Spinning: public Clase
 		Spinning();
 		Spinning(int id, std::string nombre, Turno turno, int cantBicicletas);
 		int getCantBicicletas();
-        int cupo();
+        virtual int cupo();
         ~Spinning();
 };
 
