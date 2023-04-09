@@ -12,7 +12,7 @@ public:
 	Entrenamiento(int id, std::string nombre, Turno turno, bool enRambla);
 	bool getEnRambla();
 	void setEnRambla(bool rambla);
-	int Cupo();
+	virtual int cupo();
 	~Entrenamiento();
 };
 

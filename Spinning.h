@@ -11,7 +11,7 @@ class Spinning: public Clase
 		Spinning();
 		Spinning(int id, std::string nombre, Turno turno, int cantBicicletas);
 		int getCantBicicletas();
-        int cupo();
+        virtual int cupo();
         ~Spinning();
 };
 
