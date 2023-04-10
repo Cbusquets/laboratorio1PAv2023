@@ -1,5 +1,5 @@
-#ifndef DTSPINNING
-#define DTSPINNING
+#ifndef DTSPINNING_H
+#define DTSPINNING_H
 #include "DtClase.h"
 
 class DtSpinning : public DtClase
@@ -9,7 +9,7 @@ private:
 
 public:
 	DtSpinning();
-	DtSpinning(int id, std::string nombre, Turno turno, int cantBicicletas);
+	DtSpinning(int id, std::string nombre, Turno turno, int cantBicicletas, claseType type);
 	int getCantBicicletas();
 	~DtSpinning();
 };

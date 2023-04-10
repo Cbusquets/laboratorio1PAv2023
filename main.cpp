@@ -117,8 +117,8 @@ int main()
 
                 cout << "Ingrese la cantidad de bicis: ";
                 cin >> cantBicis;
-
-                cSpinning = DtSpinning(idClase, nombreClase, turno, cantBicis);
+                
+                cSpinning = DtSpinning(idClase, nombreClase, turno, cantBicis, SPINNING);
                 Sistema obj;
 
                 try
@@ -150,7 +150,7 @@ int main()
                     enRambla = false;
                 }
 
-                cEntrenamiento = DtEntrenamiento(idClase, nombreClase, turno, enRambla);
+                cEntrenamiento = DtEntrenamiento(idClase, nombreClase, turno, enRambla, ENTRENAMIENTO);
                 Sistema obj;
 
                 try

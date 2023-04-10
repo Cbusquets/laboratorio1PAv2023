@@ -1,5 +1,5 @@
-#ifndef INSCRIPCION
-#define INSCRIPCION
+#ifndef INSCRIPCION_H
+#define INSCRIPCION_H
 #include "DtFecha.h"
 #include "Socio.h"
 class Inscripcion

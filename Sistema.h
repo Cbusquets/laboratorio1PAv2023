@@ -1,5 +1,5 @@
-#ifndef SISTEMA
-#define SISTEMA
+#ifndef SISTEMA_H
+#define SISTEMA_H
 #include <string>
 #include <iostream>
 #include <stdio.h>
@@ -10,6 +10,11 @@
 #include "Inscripcion.h"
 #include "DtFecha.h"
 #include "DtClase.h"
+#include "DtSpinning.h"
+#include "DtEntrenamiento.h"
+#include "Clase.h"
+#include "Spinning.h"
+#include "Entrenamiento.h"
 
 class Sistema
 {

@@ -7,7 +7,7 @@ Entrenamiento::Entrenamiento(int id, std::string nombre, Turno turno, bool enRam
 	this->enRambla = enRambla;
 }
 
-int Entrenamiento::Cupo()
+int Entrenamiento::cupo()
 {
 	if (this->enRambla)
 	{
