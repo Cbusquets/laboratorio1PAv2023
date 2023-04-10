@@ -16,13 +16,16 @@ void Sistema::agregarSocio(std::string ci, std::string nombre)
         bool existeSocio = false;
         int iter = 0;
 
-        while ((existeSocio == false) && (iter < sociosInscritos))
+        if (sociosInscritos > 0)
         {
-            if (socios[iter]->getCi() == ci)
+            while ((existeSocio == false) && (iter < sociosInscritos))
             {
-                existeSocio = true;
+                if (socios[iter]->getCi() == ci)
+                {
+                    existeSocio = true;
+                }
+                iter++;
             }
-            iter++;
         }
 
         if (existeSocio)
