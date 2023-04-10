@@ -30,19 +30,19 @@ void Sistema::agregarSocio(std::string ci, std::string nombre)
 
         if (existeSocio)
         {
-            throw std::invalid_argument("No es posible agregar mas socios");
+            throw std::invalid_argument("  ERROR - Ya existe un usuario con ese id");
         }
         else
         {
             Socio *s = new Socio(ci, nombre);
             socios[sociosInscritos] = s;
             sociosInscritos++;
-            cout << "OK - '" << nombre << "' fue agregado correctamente." << '\n';
+            cout << "   OK - '" << nombre << "' fue agregado correctamente." << '\n';
         }
     }
     else
     {
-        throw std::invalid_argument("No es posible agregar mas socios");
+        throw std::invalid_argument("  ERROR - No es posible agregar mas socios");
     }
 }
 
@@ -67,7 +67,7 @@ void Sistema::agregarClase(DtClase &clase)
 
         if (existeClase)
         {
-            throw std::invalid_argument("Ya existe una clase con este id");
+            throw std::invalid_argument("  ERROR - Ya existe una clase con este id");
         }
         else
         {
@@ -81,13 +81,13 @@ void Sistema::agregarClase(DtClase &clase)
                 DtEntrenamiento *dtEntrenamiento = dynamic_cast<DtEntrenamiento *>(&clase);
                 clases[cantClasesCreadas] = new Entrenamiento(dtEntrenamiento->getId(), dtEntrenamiento->getNombre(), dtEntrenamiento->getTurno(), dtEntrenamiento->getEnRambla());
             }
-            cout << "Clase '" << clases[cantClasesCreadas]->getNombre() << "' agregada correctamente";
+            cout << "   OK - Clase '" << clases[cantClasesCreadas]->getNombre() << "' fue agregada correctamente";
             cantClasesCreadas++;
         }
     }
     else
     {
-        throw std::invalid_argument(" ERROR - No es posible crear más clases");
+        throw std::invalid_argument("  ERROR - No es posible crear más clases");
     }
 }
 

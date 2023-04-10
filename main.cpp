@@ -59,7 +59,7 @@ int main()
                 }
                 catch (std::exception &e)
                 {
-                    std::cerr << " - ERROR: " << e.what() << '\n';
+                    std::cerr << e.what() << '\n';
                 }
             }
             else
@@ -127,7 +127,7 @@ int main()
                 }
                 catch (std::exception &e)
                 {
-                    std::cerr << " - ERROR: " << e.what() << '\n';
+                    std::cerr << e.what() << '\n';
                 }
             }
             else
@@ -159,7 +159,7 @@ int main()
                 }
                 catch (std::exception &e)
                 {
-                    std::cerr << " - ERROR: " << e.what() << '\n';
+                    std::cerr << e.what() << '\n';
                 }
             }
             cin.ignore();
