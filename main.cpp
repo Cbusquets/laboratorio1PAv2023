@@ -117,7 +117,7 @@ int main()
 
                 cout << "Ingrese la cantidad de bicis: ";
                 cin >> cantBicis;
-                
+
                 cSpinning = DtSpinning(idClase, nombreClase, turno, cantBicis, SPINNING);
                 Sistema obj;
 
@@ -125,9 +125,9 @@ int main()
                 {
                     obj.agregarClase(cSpinning);
                 }
-                catch (invalid_argument &error)
+                catch (std::exception &e)
                 {
-                    cout << error.what();
+                    std::cerr << " - ERROR: " << e.what() << '\n';
                 }
             }
             else
@@ -157,11 +157,12 @@ int main()
                 {
                     obj.agregarClase(cEntrenamiento);
                 }
-                catch (invalid_argument &error)
+                catch (std::exception &e)
                 {
-                    cout << error.what();
+                    std::cerr << " - ERROR: " << e.what() << '\n';
                 }
             }
+            cin.ignore();
         }
         else if (strcasecmp(opc, "agregarInscripcion") == 0)
         {
@@ -203,9 +204,9 @@ int main()
             cout << " - ERROR: Opcion incorrecta";
         }
 
-        cin.ignore();
-
     } while (!salir);
 
     delete[] comando;
+
+    return 0;
 }

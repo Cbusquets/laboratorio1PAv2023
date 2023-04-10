@@ -5,6 +5,10 @@
 #define MAX_SOCIOS 50
 #define MAX_CLASES 50
 
-enum claseType{SPINNING, ENTRENAMIENTO};
+enum claseType
+{
+    SPINNING,
+    ENTRENAMIENTO
+};
 
 #endif
