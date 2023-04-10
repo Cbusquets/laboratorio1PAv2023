@@ -49,20 +49,17 @@ void Sistema::agregarClase(DtClase &clase)
     { // Valida que no se haya llegado al tope de clases
         bool existeClase = false;
         int iter = 0;
-        cout << "iter::"<<iter<<"cantClasesCreadas::"<<cantClasesCreadas<<endl;
-        cout << "!existeClase::" << !existeClase << endl;
 
-        while ((!existeClase) && (iter <= cantClasesCreadas)) // Verifica que no exista otra clase con el mismo id
+        if (cantClasesCreadas > 0)
         {
-            cout << "Before IF line 57 "<< clase.getId() << endl;
-            //if(clases[iter] != null){}
-            if (clases[iter]->getId() == clase.getId())
+            while ((!existeClase) && (iter < cantClasesCreadas)) // Verifica que no exista otra clase con el mismo id
             {
-                existeClase = true;
-            } else {
-                cout << "Inside else line 62 "<< clases[iter]->getId()<<endl;
+                if (clases[iter]->getId() == clase.getId())
+                {
+                    existeClase = true;
+                }
+                iter++;
             }
-            iter++;
         }
 
         if (existeClase)
@@ -71,20 +68,23 @@ void Sistema::agregarClase(DtClase &clase)
         }
         else
         {
-            if(clase.getType() == 0){
-                DtSpinning *dtSpinning= dynamic_cast<DtSpinning*>(&clase);
-                clases[cantClasesCreadas]=new Spinning(dtSpinning->getId(), dtSpinning->getNombre(), dtSpinning->getTurno(), dtSpinning->getCantBicicletas());
-            } else {
-                DtEntrenamiento *dtEntrenamiento= dynamic_cast<DtEntrenamiento*>(&clase);
-                clases[cantClasesCreadas]=new Entrenamiento(dtEntrenamiento->getId(), dtEntrenamiento->getNombre(), dtEntrenamiento->getTurno(), dtEntrenamiento->getEnRambla());
+            if (clase.getType() == 0)
+            {
+                DtSpinning *dtSpinning = dynamic_cast<DtSpinning *>(&clase);
+                clases[cantClasesCreadas] = new Spinning(dtSpinning->getId(), dtSpinning->getNombre(), dtSpinning->getTurno(), dtSpinning->getCantBicicletas());
             }
-            
-            cout << clases[cantClasesCreadas]->getNombre();
+            else
+            {
+                DtEntrenamiento *dtEntrenamiento = dynamic_cast<DtEntrenamiento *>(&clase);
+                clases[cantClasesCreadas] = new Entrenamiento(dtEntrenamiento->getId(), dtEntrenamiento->getNombre(), dtEntrenamiento->getTurno(), dtEntrenamiento->getEnRambla());
+            }
+            cout << "Clase '" << clases[cantClasesCreadas]->getNombre() << "' agregada correctamente";
+            cantClasesCreadas++;
         }
     }
     else
     {
-        throw std::invalid_argument("No es posible crear más clases");
+        throw std::invalid_argument(" ERROR - No es posible crear más clases");
     }
 }
 
