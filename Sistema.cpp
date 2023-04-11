@@ -113,7 +113,10 @@ void Sistema::agregarInscripcion(std::string ciSocio, int idClase, DtFecha fecha
             {
                 existeSocio = true;
             }
-            iterSocio++;
+            if (!existeSocio)
+            {
+                iterSocio++;
+            }
         }
     }
     else
@@ -129,7 +132,10 @@ void Sistema::agregarInscripcion(std::string ciSocio, int idClase, DtFecha fecha
             {
                 existeClase = true;
             }
-            iterClase++;
+            if (!existeClase)
+            {
+                iterClase++;
+            }
         }
     }
     else
