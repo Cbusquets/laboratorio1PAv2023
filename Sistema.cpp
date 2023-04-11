@@ -186,7 +186,10 @@ void Sistema::agregarInscripcion(std::string ciSocio, int idClase, DtFecha fecha
     }
 }
 
-void Sistema::borrarInscripcion(string ciSocio, int idClase) {}
+void Sistema::borrarInscripcion(string ciSocio, int idClase) {
+
+    throw std::invalid_argument("  ERROR - No implementada");
+}
 
 /* TEST */
 
