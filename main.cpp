@@ -16,6 +16,7 @@ int main()
 {
     Sistema obj;
     bool salir = false;
+    Sistema obj;
 
     do
     {
@@ -27,6 +28,8 @@ int main()
         cout << "  3) Agregar Inscripcion\n";
         cout << "  4) Borrar Inscripcion\n";
         cout << "  5) Salir \n";
+        cout << "  6) Imprimir todas las clases \n";
+        cout << "  7) Imprimir todos los socios \n";
         cout << "----------------------------\n\n";
 
         int opc;
@@ -44,7 +47,6 @@ int main()
 
             try
             {
-                // Sistema obj;
                 obj.agregarSocio(ciSocio, nombreSocio);
             }
             catch (std::exception &e)
@@ -102,17 +104,14 @@ int main()
             { // Crear clase Spinning
                 int cantBicis;
 
-                cout << "Ingrese la cantidad de bicis: ";
-                cin >> cantBicis;
-                while (cantBicis>50)
+                do
                 {
-                    cout << "\n   ERROR - La cantidad de bicis ingresadas no puede ser mayor a 50.\n\n";
                     cout << "Ingrese la cantidad de bicis: ";
                     cin >> cantBicis;
-                }
-                
+
+                } while ((cantBicis > 50) || (cantBicis < 1));
+
                 cSpinning = DtSpinning(idClase, nombreClase, turno, cantBicis, SPINNING);
-                // Sistema obj;
 
                 try
                 {
@@ -144,7 +143,6 @@ int main()
                 }
 
                 cEntrenamiento = DtEntrenamiento(idClase, nombreClase, turno, enRambla, ENTRENAMIENTO);
-                // Sistema obj;
 
                 try
                 {
@@ -162,23 +160,24 @@ int main()
             
             string ciSocio;
             int idClaseInscr;
-            int diaInscr, mesInscr, anioInscr;
+            int diaInscr;
+            int mesInscr;
+            int anioInscr;
 
-            cout << "Ingresa el numero de cedula del socio: ";
+            cout << "Ingresa el numero de cedula del socio: " << endl;
             cin >> ciSocio;
-            cout << "Ingresa el id de la clase a la que se desea inscribir: ";
+            cout << "Ingresa el id de la clase a la que se desea inscribir: " << endl;
             cin >> idClaseInscr;
-            cout << "Ingresa el dia de la inscripcion: ";
+            cout << "Ingresa el dia de la inscripcion: " << endl;
             cin >> diaInscr;
-            cout << "Ingresa el mes de la inscripcion: ";
+            cout << "Ingresa el mes de la inscripcion: " << endl;
             cin >> mesInscr;
-            cout << "Ingresa el anio de la inscripcion: ";
+            cout << "Ingresa el anio de la inscripcion: " << endl;
             cin >> anioInscr;
 
-            DtFecha fechaInscr(diaInscr, mesInscr, anioInscr);
             try
             {
-                // Sistema obj;
+                DtFecha fechaInscr(diaInscr, mesInscr, anioInscr);
                 obj.agregarInscripcion(ciSocio, idClaseInscr, fechaInscr);
             }
             catch (std::exception &e)
@@ -194,6 +193,14 @@ int main()
         {
             cout << "  ¡Hasta la proxima!"<< endl;
             salir = true;
+        }
+        else if (opc == 6) // Imprimir todas las clases
+        {
+            obj.imprimirClases();
+        }
+        else if (opc == 7) // Imprimir todos los socios
+        {
+            obj.imprimirSocios();
         }
         else
         {
