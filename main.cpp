@@ -16,7 +16,6 @@ int main()
 {
     Sistema obj;
     bool salir = false;
-    Sistema obj;
 
     do
     {
@@ -187,7 +186,17 @@ int main()
         }
         else if (opc == 4) // Borrar inscripcion
         {
-            cout << "   ERROR - No implementada";
+            string ciSocio;
+            int idClase;
+            cout << "\nIngrese los siguientes datos por favor:\n";
+            cout << "---------------------------------------\n\n";
+            cout << "Ingresa ci del socio: ";
+            cin >> ciSocio;
+            cout << "Ingresa el id de la clase: ";
+            cin >> idClase;
+
+            obj.borrarInscripcion(ciSocio, idClase);
+            // cout << "   ERROR - No implementada";
         }
         else if (opc == 5) // Salir
         {
