@@ -20,7 +20,9 @@ class Sistema
 {
 	private:
 		Socio* socios[MAX_SOCIOS];
-		int cantSocios;
+		Clase* clases[MAX_CLASES];
+		int sociosInscritos;
+		int cantClasesCreadas;
 		
 	public:
 		Sistema();
