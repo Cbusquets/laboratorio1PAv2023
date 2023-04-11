@@ -103,7 +103,7 @@ int main()
 
                 do
                 {
-                    cout << "Ingrese la cantidad de bicis: ";
+                    cout << "Ingrese la cantidad de bicis, con un máximo de 50: ";
                     cin >> cantBicis;
 
                 } while ((cantBicis > 50) || (cantBicis < 1));
