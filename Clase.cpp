@@ -8,6 +8,7 @@ Clase::Clase(int id, std::string nombre, Turno turno)
 	this->id = id;
 	this->nombre = nombre;
 	this->turno = turno;
+	this->cantInscriptos = 0;
 }
 
 //
