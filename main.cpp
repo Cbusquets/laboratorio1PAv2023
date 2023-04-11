@@ -7,6 +7,7 @@
 #include "Sistema.h"
 #include "DtSpinning.h"
 #include "DtEntrenamiento.h"
+#include "DtFecha.h"
 
 using namespace std;
 using std::cin;
@@ -14,62 +15,45 @@ using std::cin;
 int main()
 {
 
-    char *comando = new (char[MAX_COMANDO]);
-    char *opc, *param1 = NULL, *param2 = NULL, *param3 = NULL;
     bool salir = false;
 
     do
     {
-        param1 = NULL;
-        param2 = NULL;
-        param3 = NULL;
 
         cout << "\n----------------------------\n";
         cout << "Elegi la opcion que desees\n \n";
-        cout << "agregarSocio(ci, nombre)\n";
-        cout << "agregarClase\n";
-        cout << "agregarInscripcion(ciSocio, idClase, fecha)\n";
-        cout << "borrarInscripcion(ciSocio, idClase)\n";
-        cout << "salir \n";
+        cout << "  1) Agregar Socio\n";
+        cout << "  2) Agregar Clase\n";
+        cout << "  3) Agregar Inscripcion\n";
+        cout << "  4) Borrar Inscripcion\n";
+        cout << "  5) Salir \n";
         cout << "----------------------------\n\n";
 
-        fflush(stdin);
-        fgets(comando, MAX_COMANDO, stdin);
+        int opc;
+        cin >> opc;
 
-        // Busca el salto de linea y lo cambia por una finalización de string
-        char *p = strchr(comando, '\n');
-        if (p != NULL)
+        if (opc == 1) // Agregar socio
         {
-            *p = '\0';
-        }
 
-        opc = strtok(comando, "( ,)");
+            string ciSocio, nombreSocio;
 
-        if (strcasecmp(opc, "agregarSocio") == 0)
-        {
-            param1 = strtok(NULL, "( ,)");
-            param2 = strtok(NULL, "( ,)");
+            cout << "Ingresa la cedula del socio: ";
+            cin >> ciSocio;
+            cout << "Ingresa el nombre del socio: ";
+            cin >> nombreSocio;
 
-            if ((param1 != NULL) && (param2 != NULL))
+            try
             {
-                try
-                {
-                    Sistema obj;
-                    obj.agregarSocio(param1, param2);
-                }
-                catch (std::exception &e)
-                {
-                    std::cerr << " - ERROR: " << e.what() << '\n';
-                }
+                Sistema obj;
+                obj.agregarSocio(ciSocio, nombreSocio);
             }
-            else
+            catch (std::exception &e)
             {
-                cout << " - ERROR: Faltan parámetros\n";
+                std::cerr << e.what() << '\n';
             }
         }
-        else if (strcasecmp(opc, "agregarClase") == 0)
+        else if (opc == 2) // Agregar Clase
         {
-            param1 = strtok(NULL, "( ,)");
             int idClase;
             string nombreClase;
             int idTurno;
@@ -117,7 +101,7 @@ int main()
 
                 cout << "Ingrese la cantidad de bicis: ";
                 cin >> cantBicis;
-                
+
                 cSpinning = DtSpinning(idClase, nombreClase, turno, cantBicis, SPINNING);
                 Sistema obj;
 
@@ -125,9 +109,9 @@ int main()
                 {
                     obj.agregarClase(cSpinning);
                 }
-                catch (invalid_argument &error)
+                catch (std::exception &e)
                 {
-                    cout << error.what();
+                    std::cerr << e.what() << '\n';
                 }
             }
             else
@@ -157,55 +141,56 @@ int main()
                 {
                     obj.agregarClase(cEntrenamiento);
                 }
-                catch (invalid_argument &error)
+                catch (std::exception &e)
                 {
-                    cout << error.what();
+                    std::cerr << e.what() << '\n';
                 }
             }
+            cin.ignore();
         }
-        else if (strcasecmp(opc, "agregarInscripcion") == 0)
+        else if (opc == 3) // Agregar Inscripcion
         {
-            param1 = strtok(NULL, "( ,)");
-            param2 = strtok(NULL, "( ,)");
-            param3 = strtok(NULL, "( ,)");
 
-            if ((param1 != NULL) && (param2 != NULL) && (param3 != NULL))
+            string ciSocio;
+            int idClaseInscr;
+            int diaInscr, mesInscr, anioInscr;
+
+            cout << "Ingresa el numero de cedula del socio: ";
+            cin >> ciSocio;
+            cout << "Ingresa el id de la clase a la que se desea inscribir: ";
+            cin >> idClaseInscr;
+            cout << "Ingresa el dia de la inscripcion: ";
+            cin >> diaInscr;
+            cout << "Ingresa el mes de la inscripcion: ";
+            cin >> mesInscr;
+            cout << "Ingresa el anio de la inscripcion: ";
+            cin >> anioInscr;
+
+            DtFecha fechaInscr(diaInscr, mesInscr, anioInscr);
+            try
             {
-                // To-DO llamada a agregarInscripcion()
-                cout << "Funcion " << opc << " con los parametros " << param1 << " " << param2 << " " << param3 << "\n";
+                Sistema obj;
+                obj.agregarInscripcion(ciSocio, idClaseInscr, fechaInscr);
             }
-            else
+            catch (std::exception &e)
             {
-                cout << " - ERROR: Faltan parámetros\n";
+                std::cerr << e.what() << '\n';
             }
         }
-        else if (strcasecmp(opc, "borrarInscripcion") == 0)
+        else if (opc == 4) // Borrar inscripcion
         {
-            param1 = strtok(NULL, "( ,)");
-            param2 = strtok(NULL, "( ,)");
-
-            if ((param1 != NULL) && (param2 != NULL))
-            {
-                // To-DO llamada a borrarInscripcion()
-                cout << "Funcion " << opc << " con los parametros " << param1 << " " << param2 << "\n";
-            }
-            else
-            {
-                cout << " - ERROR: Faltan parámetros\n";
-            }
+            cout << "   ERROR - No implementada";
         }
-        else if (strcasecmp(opc, "salir") == 0)
+        else if (opc == 5) // Salir
         {
             salir = true;
         }
         else
         {
-            cout << " - ERROR: Opcion incorrecta";
+            cout << "  ERROR - Opcion incorrecta";
         }
-
-        cin.ignore();
 
     } while (!salir);
 
-    delete[] comando;
+    return 0;
 }
