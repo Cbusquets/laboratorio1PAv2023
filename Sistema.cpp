@@ -2,14 +2,15 @@
 
 using namespace std;
 
-Socio *socios[MAX_SOCIOS];
-int sociosInscritos = 0;
-Clase *clases[MAX_CLASES];
-int cantClasesCreadas = 0;
+Sistema::Sistema() {
+    this->sociosInscritos=0;
+    this->cantClasesCreadas=0;
+    for(int index=0; index<MAX_CLASES;index++){
+        clases[index]=NULL;
+    }
+}
 
-Sistema::Sistema() {}
-
-void Sistema::agregarSocio(std::string ci, std::string nombre)
+void Sistema::agregarSocio(string ci, string nombre)
 {
     if (sociosInscritos < MAX_SOCIOS) // Valida que no se haya llegado al máximo cupo de socios
     {
@@ -95,6 +96,6 @@ void Sistema::agregarInscripcion(std::string ciSocio, int idClase, DtFecha fecha
 {
 }
 
-void Sistema::borrarInscripcion(std::string ciSocio, int idClase) {}
+void Sistema::borrarInscripcion(string ciSocio, int idClase) {}
 
 Sistema::~Sistema() {}
