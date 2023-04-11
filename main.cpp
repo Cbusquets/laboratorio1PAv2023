@@ -16,6 +16,7 @@ int main()
 {
 
     bool salir = false;
+    Sistema obj;
 
     do
     {
@@ -44,7 +45,6 @@ int main()
 
             try
             {
-                Sistema obj;
                 obj.agregarSocio(ciSocio, nombreSocio);
             }
             catch (std::exception &e)
@@ -103,7 +103,6 @@ int main()
                 cin >> cantBicis;
 
                 cSpinning = DtSpinning(idClase, nombreClase, turno, cantBicis, SPINNING);
-                Sistema obj;
 
                 try
                 {
@@ -135,7 +134,6 @@ int main()
                 }
 
                 cEntrenamiento = DtEntrenamiento(idClase, nombreClase, turno, enRambla, ENTRENAMIENTO);
-                Sistema obj;
 
                 try
                 {
@@ -169,7 +167,6 @@ int main()
             DtFecha fechaInscr(diaInscr, mesInscr, anioInscr);
             try
             {
-                Sistema obj;
                 obj.agregarInscripcion(ciSocio, idClaseInscr, fechaInscr);
             }
             catch (std::exception &e)
@@ -184,6 +181,14 @@ int main()
         else if (opc == 5) // Salir
         {
             salir = true;
+        }
+        else if (opc == 6) // Imprimir todas las clases
+        {
+            obj.imprimirClases();
+        }
+        else if (opc == 7) // Imprimir todos los socios
+        {
+            obj.imprimirSocios();
         }
         else
         {
