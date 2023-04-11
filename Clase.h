@@ -5,26 +5,37 @@
 #include "Inscripcion.h"
 #include "Turno.h"
 
+using namespace std;
+
 class Clase
 {
-	protected:
-		int id;
-		std::string nombre;
-        Turno turno;
-		Inscripcion* inscripciones[MAX_CLASES];
+private:
+	int id;
+	string nombre;
+	Turno turno;
+	Inscripcion inscripciones[MAX_CLASES];
+	int cantInscriptos;
 
-	public:
-		Clase();
-		Clase(int id, std::string nombre, Turno turno);
-        int getId();
-        std::string getNombre();
-		Turno getTurno();
-		void setId(int id);
-		void setNombre(std::string nombre);
-		void setTurno(Turno turno);
-        virtual int cupo() = 0;
-		virtual ~Clase();
+public:
+	Clase();
+	Clase(int id, std::string nombre, Turno turno);
+
+	// Getters
+	int getId();
+	string getNombre();
+	Turno getTurno();
+	int getCantInscriptos();
+	Inscripcion *getInscriptos();
+
+	// Setters
+	void setId(int id);
+	void setNombre(std::string nombre);
+	void setTurno(Turno turno);
+	void setCantInscriptos(int cant);
+	virtual int cupo() = 0;
+	void setInscripcion(Inscripcion ins);
+
+	virtual ~Clase();
 };
 
 #endif
-

@@ -7,69 +7,55 @@
 #include "Sistema.h"
 #include "DtSpinning.h"
 #include "DtEntrenamiento.h"
+#include "DtFecha.h"
 
 using namespace std;
 using std::cin;
 
 int main()
 {
-
-    char *comando = new (char[MAX_COMANDO]);
-    char *opc, *param1 = NULL, *param2 = NULL, *param3 = NULL;
+    Sistema obj;
     bool salir = false;
 
     do
     {
-        param1 = NULL;
-        param2 = NULL;
-        param3 = NULL;
 
         cout << "\n----------------------------\n";
-        cout << "Elegi la opcion que desees\n \n";
-        cout << "agregarSocio(ci, nombre)\n";
-        cout << "agregarClase\n";
-        cout << "agregarInscripcion(ciSocio, idClase, fecha)\n";
-        cout << "borrarInscripcion(ciSocio, idClase)\n";
-        cout << "salir \n";
+        cout << "Elige el numero de opcion que desees:\n \n";
+        cout << "  1) Agregar Socio\n";
+        cout << "  2) Agregar Clase\n";
+        cout << "  3) Agregar Inscripcion\n";
+        cout << "  4) Borrar Inscripcion\n";
+        cout << "  5) Salir \n";
+        cout << "  6) Imprimir todas las clases \n";
+        cout << "  7) Imprimir todos los socios \n";
         cout << "----------------------------\n\n";
 
-        fflush(stdin);
-        fgets(comando, MAX_COMANDO, stdin);
+        int opc;
+        cin >> opc;
 
-        // Busca el salto de linea y lo cambia por una finalización de string
-        char *p = strchr(comando, '\n');
-        if (p != NULL)
+        if (opc == 1) // Agregar socio
         {
-            *p = '\0';
-        }
+            string ciSocio, nombreSocio;
+            cout << "\nIngrese los siguientes datos por favor:\n";
+            cout << "---------------------------------------\n\n";
+            cout << "Ingrese la cedula del socio: ";
+            cin >> ciSocio;
+            cout << "Ingrese el nombre del socio: ";
+            cin >> nombreSocio;
 
-        opc = strtok(comando, "( ,)");
-
-        if (strcasecmp(opc, "agregarSocio") == 0)
-        {
-            param1 = strtok(NULL, "( ,)");
-            param2 = strtok(NULL, "( ,)");
-
-            if ((param1 != NULL) && (param2 != NULL))
+            try
             {
-                try
-                {
-                    Sistema obj;
-                    obj.agregarSocio(param1, param2);
-                }
-                catch (std::exception &e)
-                {
-                    std::cerr << " - ERROR: " << e.what() << '\n';
-                }
+                obj.agregarSocio(ciSocio, nombreSocio);
             }
-            else
+            catch (std::exception &e)
             {
-                cout << " - ERROR: Faltan parámetros\n";
+                std::cerr << e.what() << '\n';
             }
         }
-        else if (strcasecmp(opc, "agregarClase") == 0)
+        else if (opc == 2) // Agregar Clase
         {
-            param1 = strtok(NULL, "( ,)");
+            
             int idClase;
             string nombreClase;
             int idTurno;
@@ -78,6 +64,8 @@ int main()
             DtSpinning cSpinning;
             DtEntrenamiento cEntrenamiento;
 
+            cout << "\nIngrese los siguientes datos por favor:\n";
+            cout << "---------------------------------------\n\n";
             cout << "Ingresa id de la clase: ";
             cin >> idClase;
             cout << "Ingresa el nombre de la clase: ";
@@ -86,7 +74,7 @@ int main()
             // Solicita el turno
             do
             {
-                cout << "Ingresá el turno: \n   1) Mañana \n   2) Tarde \n   3) Noche\n";
+                cout << "Ingrese el turno: \n   1) Mañana \n   2) Tarde \n   3) Noche\n";
                 cin >> idTurno;
             } while ((idTurno < 1) || (idTurno > 3));
 
@@ -106,7 +94,7 @@ int main()
             // Pregunta tipo de clase
             do
             {
-                cout << "Ingresa el tipo de clase: \n   1) Spinning \n   2) Entrenamiento\n";
+                cout << "Ingrese el tipo de clase: \n   1) Spinning \n   2) Entrenamiento\n";
                 cin >> idTipoClase;
             } while ((idTipoClase < 1) || (idTipoClase > 2));
 
@@ -115,19 +103,22 @@ int main()
             { // Crear clase Spinning
                 int cantBicis;
 
-                cout << "Ingrese la cantidad de bicis: ";
-                cin >> cantBicis;
-                
+                do
+                {
+                    cout << "Ingrese la cantidad de bicis: ";
+                    cin >> cantBicis;
+
+                } while ((cantBicis > 50) || (cantBicis < 1));
+
                 cSpinning = DtSpinning(idClase, nombreClase, turno, cantBicis, SPINNING);
-                Sistema obj;
 
                 try
                 {
                     obj.agregarClase(cSpinning);
                 }
-                catch (invalid_argument &error)
+                catch (std::exception &e)
                 {
-                    cout << error.what();
+                    std::cerr << e.what() << '\n';
                 }
             }
             else
@@ -151,61 +142,81 @@ int main()
                 }
 
                 cEntrenamiento = DtEntrenamiento(idClase, nombreClase, turno, enRambla, ENTRENAMIENTO);
-                Sistema obj;
 
                 try
                 {
                     obj.agregarClase(cEntrenamiento);
                 }
-                catch (invalid_argument &error)
+                catch (std::exception &e)
                 {
-                    cout << error.what();
+                    std::cerr << e.what() << '\n';
                 }
             }
+            cin.ignore();
         }
-        else if (strcasecmp(opc, "agregarInscripcion") == 0)
+        else if (opc == 3) // Agregar Inscripcion
         {
-            param1 = strtok(NULL, "( ,)");
-            param2 = strtok(NULL, "( ,)");
-            param3 = strtok(NULL, "( ,)");
+            
+            string ciSocio;
+            int idClaseInscr;
+            int diaInscr;
+            int mesInscr;
+            int anioInscr;
 
-            if ((param1 != NULL) && (param2 != NULL) && (param3 != NULL))
-            {
-                // To-DO llamada a agregarInscripcion()
-                cout << "Funcion " << opc << " con los parametros " << param1 << " " << param2 << " " << param3 << "\n";
-            }
-            else
-            {
-                cout << " - ERROR: Faltan parámetros\n";
-            }
-        }
-        else if (strcasecmp(opc, "borrarInscripcion") == 0)
-        {
-            param1 = strtok(NULL, "( ,)");
-            param2 = strtok(NULL, "( ,)");
+            cout << "Ingresa el numero de cedula del socio: " << endl;
+            cin >> ciSocio;
+            cout << "Ingresa el id de la clase a la que se desea inscribir: " << endl;
+            cin >> idClaseInscr;
+            cout << "Ingresa el dia de la inscripcion: " << endl;
+            cin >> diaInscr;
+            cout << "Ingresa el mes de la inscripcion: " << endl;
+            cin >> mesInscr;
+            cout << "Ingresa el anio de la inscripcion: " << endl;
+            cin >> anioInscr;
 
-            if ((param1 != NULL) && (param2 != NULL))
+            try
             {
-                // To-DO llamada a borrarInscripcion()
-                cout << "Funcion " << opc << " con los parametros " << param1 << " " << param2 << "\n";
+                DtFecha fechaInscr(diaInscr, mesInscr, anioInscr);
+                obj.agregarInscripcion(ciSocio, idClaseInscr, fechaInscr);
             }
-            else
+            catch (std::exception &e)
             {
-                cout << " - ERROR: Faltan parámetros\n";
+                std::cerr << e.what() << '\n';
             }
         }
-        else if (strcasecmp(opc, "salir") == 0)
+        else if (opc == 4) // Borrar inscripcion
         {
+            string ciSocio;
+            int idClase;
+            cout << "\nIngrese los siguientes datos por favor:\n";
+            cout << "---------------------------------------\n\n";
+            cout << "Ingresa ci del socio: ";
+            cin >> ciSocio;
+            cout << "Ingresa el id de la clase: ";
+            cin >> idClase;
+
+            obj.borrarInscripcion(ciSocio, idClase);
+            // cout << "   ERROR - No implementada";
+        }
+        else if (opc == 5) // Salir
+        {
+            cout << "  ¡Hasta la proxima!"<< endl;
             salir = true;
+        }
+        else if (opc == 6) // Imprimir todas las clases
+        {
+            obj.imprimirClases();
+        }
+        else if (opc == 7) // Imprimir todos los socios
+        {
+            obj.imprimirSocios();
         }
         else
         {
-            cout << " - ERROR: Opcion incorrecta";
+            cout << "  ERROR - Opcion incorrecta. \n";
         }
-
-        cin.ignore();
 
     } while (!salir);
 
-    delete[] comando;
+    return 0;
 }
