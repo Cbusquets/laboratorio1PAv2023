@@ -91,7 +91,9 @@ void Sistema::agregarClase(DtClase &clase)
     }
 }
 
-void Sistema::agregarInscripcion(std::string ciSocio, int idClase, DtFecha fecha) {}
+void Sistema::agregarInscripcion(std::string ciSocio, int idClase, DtFecha fecha)
+{
+}
 
 void Sistema::borrarInscripcion(std::string ciSocio, int idClase) {}
 
