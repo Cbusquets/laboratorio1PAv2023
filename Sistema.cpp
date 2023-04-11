@@ -31,19 +31,19 @@ void Sistema::agregarSocio(string ci, string nombre)
 
         if (existeSocio)
         {
-            throw std::invalid_argument("  ERROR - Ya existe un usuario con ese id");
+            throw std::invalid_argument("\n  ERROR - Ya existe un socio registrado para el numero de cedula: '"+ci+"'.");
         }
         else
         {
             Socio *s = new Socio(ci, nombre);
             socios[sociosInscritos] = s;
             sociosInscritos++;
-            cout << "   OK - '" << nombre << "' fue agregado correctamente." << '\n';
+            cout << "\nOK - '" << nombre << "' fue agregado correctamente." << '\n';
         }
     }
     else
     {
-        throw std::invalid_argument("  ERROR - No es posible agregar mas socios");
+        throw std::invalid_argument("\n  ERROR - No es posible agregar mas socios. Reabriremos inscripciones a la brevedad.");
     }
 }
 
@@ -68,7 +68,7 @@ void Sistema::agregarClase(DtClase &clase)
 
         if (existeClase)
         {
-            throw std::invalid_argument("  ERROR - Ya existe una clase con este id");
+            throw std::invalid_argument("\n  ERROR - Ya existe una clase con el id ingresado.");
         }
         else
         {
@@ -82,18 +82,67 @@ void Sistema::agregarClase(DtClase &clase)
                 DtEntrenamiento *dtEntrenamiento = dynamic_cast<DtEntrenamiento *>(&clase);
                 clases[cantClasesCreadas] = new Entrenamiento(dtEntrenamiento->getId(), dtEntrenamiento->getNombre(), dtEntrenamiento->getTurno(), dtEntrenamiento->getEnRambla());
             }
-            cout << "   OK - Clase '" << clases[cantClasesCreadas]->getNombre() << "' fue agregada correctamente";
+            cout << "\n   OK - Clase '" << clases[cantClasesCreadas]->getNombre() << "' fue agregada correctamente.\n";
             cantClasesCreadas++;
         }
     }
     else
     {
-        throw std::invalid_argument("  ERROR - No es posible crear más clases");
+        throw std::invalid_argument("\n  ERROR - No es posible crear más clases.");
     }
 }
 
 void Sistema::agregarInscripcion(std::string ciSocio, int idClase, DtFecha fecha)
 {
+    bool existeSocio=false, existeClase=false;
+    int iter=0;
+    Socio *socioToReg;
+    Clase *claseReg;
+
+    if(sociosInscritos>0 && cantClasesCreadas > 0){
+        
+        while ((existeSocio == false) && (iter < sociosInscritos))
+        {
+            if (socios[iter]->getCi()==ciSocio)
+            {
+                existeSocio = true;
+                socioToReg=socios[iter];
+            }
+            iter++;
+        }
+
+        if(existeSocio) {
+            iter=0;
+            
+            while ((!existeClase) && (iter < cantClasesCreadas)) // Verifica que no exista otra clase con el mismo id
+            {
+                if (clases[iter]->getId() == idClase)
+                {
+                    existeClase = true;
+                    claseReg=clases[iter];
+                }
+                iter++;
+            }
+
+            if(existeClase){
+                cout << "CUPO::" << claseReg->cupo() << endl; // verificar cupo disponible
+                cout << "IDSocio::" << socioToReg->getCi() << endl; // verificar cupo disponible
+            } else {
+                throw std::invalid_argument("\n  ERROR - No existe una clase registrada para el numero de id: '"+to_string(idClase)+"'.");
+            }
+        } else {
+
+            throw std::invalid_argument("\n  ERROR - No existe un socio registrado para el numero de cedula: '"+ciSocio+"'.");
+        }
+    } else if (cantClasesCreadas==0){
+
+        throw std::invalid_argument("\n  ERROR - No existen clases creadas.");
+
+    } else {
+
+        throw std::invalid_argument("\n  ERROR - No existen socios registrados.");
+
+    }
 }
 
 void Sistema::borrarInscripcion(string ciSocio, int idClase) {}
