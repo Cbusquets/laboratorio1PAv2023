@@ -18,17 +18,22 @@
 
 class Sistema
 {
-	private:
-		Socio* socios[MAX_SOCIOS];
-		int cantSocios;
-		
-	public:
-		Sistema();
-		void agregarSocio(std::string ci, std::string nombre);
-		void agregarClase(DtClase& clase);
-		void agregarInscripcion(std::string ciSocio, int idClase, DtFecha fecha);
-		void borrarInscripcion(std::string ciSocio, int idClase);
-        ~Sistema();
+private:
+	Socio *socios[MAX_SOCIOS];
+	Clase *clases[MAX_CLASES];
+	int sociosInscritos;
+	int cantClasesCreadas;
+
+public:
+	Sistema();
+	void agregarSocio(std::string ci, std::string nombre);
+	void agregarClase(DtClase &clase);
+	void agregarInscripcion(std::string ciSocio, int idClase, DtFecha fecha);
+	void borrarInscripcion(std::string ciSocio, int idClase);
+	// TESTS
+	void imprimirClases();
+	void imprimirSocios();
+	~Sistema();
 };
 
 #endif
