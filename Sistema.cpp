@@ -104,7 +104,7 @@ void Sistema::agregarInscripcion(std::string ciSocio, int idClase, DtFecha fecha
     bool existeClase = false;
     int iterClase = 0;
 
-    if (sociosInscritos > 0) // Verifica que exista al menos un socio ingresado al sistema
+    if (sociosInscritos > 0 && cantClasesCreadas > 0) // Verifica que exista al menos un socio ingresado al sistema
     {
 
         while ((!existeSocio) && (iterSocio < sociosInscritos)) // Verifica que exista el socio
@@ -118,82 +118,84 @@ void Sistema::agregarInscripcion(std::string ciSocio, int idClase, DtFecha fecha
                 iterSocio++;
             }
         }
+
+        if (existeSocio)
+        {
+            while ((!existeClase) && (iterClase < cantClasesCreadas)) // Verifica que exista la clase
+            {
+                if (clases[iterClase]->getId() == idClase)
+                {
+                    existeClase = true;
+                }
+                if (!existeClase)
+                {
+                    iterClase++;
+                }
+            }
+
+            if (existeClase)
+            {
+                if (clases[iterClase]->getCantInscriptos() < clases[iterClase]->cupo()) // Verifica que hayan cupos disponibles
+                {
+                    int iter = 0;
+                    bool socioInscrito = false;
+                    Inscripcion *inscriptos = clases[iterClase]->getInscriptos(); // Obtengo el arreglo de los socios incriptos a esa clase
+
+                    while ((!socioInscrito) && (iter < clases[iterClase]->getCantInscriptos()))
+                    { // Verifica que el socio ya no este inscripto en esa clase
+                        if (inscriptos[iter].getSocio()->getCi() == ciSocio)
+                        {
+                            socioInscrito = true;
+                        }
+                        iter++;
+                    }
+
+                    if (socioInscrito)
+                    {
+                        throw std::invalid_argument("  ERROR - El socio ya está inscripto a esta clase");
+                    }
+                    else
+                    {
+                        Inscripcion *inscr = new Inscripcion(fecha, socios[iterSocio]);
+                        clases[iterClase]->setInscripcion(*inscr);
+                        cout << "   OK - La inscripcion de '" << ciSocio << "' a la clase '" << idClase << "' fue agregada correctamente." << '\n';
+                    }
+                }
+                else
+                {
+                    throw std::invalid_argument("  ERROR - No hay cupos disponibles para esta clase");
+                }
+            }
+            else
+            {
+                throw std::invalid_argument("\n  ERROR - No existe una clase registrada para el numero de id: '" + to_string(idClase) + "'.");
+            }
+        }
+        else
+        {
+            throw std::invalid_argument("\n  ERROR - No existe un socio registrado para el numero de cedula: '" + ciSocio + "'.");
+        }
+    }
+    else if (cantClasesCreadas <= 0)
+    {
+
+        throw std::invalid_argument("\n  ERROR - No existen clases creadas.");
     }
     else
     {
         throw std::invalid_argument("  ERROR - No hay ningun socio ingresado al sistema");
     }
-
-    if (cantClasesCreadas > 0) // Verifica que exista al menos una clase ingresada en el sistema
-    {
-        while ((!existeClase) && (iterClase < cantClasesCreadas)) // Verifica que exista la clase
-        {
-            if (clases[iterClase]->getId() == idClase)
-            {
-                existeClase = true;
-            }
-            if (!existeClase)
-            {
-                iterClase++;
-            }
-        }
-    }
-    else
-    {
-        throw std::invalid_argument("  ERROR - No hay ninguna clase ingresada en el sistema");
-    }
-
-    if (!existeSocio) // Si no existe el socio
-    {
-        throw std::invalid_argument("  ERROR - No existe un socio con esa CI");
-    }
-    else if (!existeClase) // Si no existe la clase
-    {
-        throw std::invalid_argument("  ERROR - No existe un socio con esa CI");
-    }
-    else // Si existe el socio y la clase
-    {
-        if (clases[iterClase]->getCantInscriptos() < clases[iterClase]->cupo()) // Verifica que hayan cupos disponibles
-        {
-            int iter = 0;
-            bool socioInscrito = false;
-            Inscripcion *inscriptos = clases[iterClase]->getInscriptos(); // Obtengo el arreglo de los socios incriptos a esa clase
-
-            while ((!socioInscrito) && (iter < clases[iterClase]->getCantInscriptos()))
-            { // Verifica que el socio ya no este inscripto en esa clase
-                if (inscriptos[iter].getSocio()->getCi() == ciSocio)
-                {
-                    socioInscrito = true;
-                }
-                iter++;
-            }
-
-            if (socioInscrito)
-            {
-                throw std::invalid_argument("  ERROR - El socio ya está inscripto a esta clase");
-            }
-            else
-            {
-                Inscripcion *inscr = new Inscripcion(fecha, socios[iterSocio]);
-                clases[iterClase]->setInscripcion(*inscr);
-                cout << "   OK - La inscripcion de '" << ciSocio << "' a la clase '" << idClase << "' fue agregada correctamente." << '\n';
-            }
-        }
-        else
-        {
-            throw std::invalid_argument("  ERROR - No hay cupos disponibles para esta clase");
-        }
-    }
 }
 
-void Sistema::borrarInscripcion(string ciSocio, int idClase) {
+void Sistema::borrarInscripcion(string ciSocio, int idClase)
+{
 
     bool existeSocio = false;
     int iterSocio = 0;
     bool existeClase = false;
     int iterClase = 0;
 
-    if (sociosInscritos > 0) // Verifica que exista al menos un socio ingresado al sistema
+    if (sociosInscritos > 0 && cantClasesCreadas > 0) // Verifica que exista al menos un socio ingresado al sistema
     {
 
         while ((!existeSocio) && (iterSocio < sociosInscritos)) // Verifica que exista el socio
@@ -207,65 +209,69 @@ void Sistema::borrarInscripcion(string ciSocio, int idClase) {
                 iterSocio++;
             }
         }
+
+        if (existeSocio)
+        {
+            while ((!existeClase) && (iterClase < cantClasesCreadas)) // Verifica que exista la clase
+            {
+                if (clases[iterClase]->getId() == idClase)
+                {
+                    existeClase = true;
+                }
+                if (!existeClase)
+                {
+                    iterClase++;
+                }
+            }
+
+            if (existeClase)
+            {
+                // Reordenar arreglo
+                Inscripcion *inscriptos = clases[iterClase]->getInscriptos();
+                int iter = 0, cantInscriptosAux = clases[iterClase]->getCantInscriptos();
+                bool esSocio = false;
+                do
+                {
+
+                    if (inscriptos[iter].getSocio()->getCi() == ciSocio)
+                    {
+                        esSocio = true;
+                    }
+                    else
+                    {
+                        iter++;
+                    }
+
+                } while (!esSocio && (iter < cantInscriptosAux));
+
+                if (!esSocio)
+                {
+                    throw std::invalid_argument("  ERROR - El socio con la cedula: '" + ciSocio + "' no se encuentra inscripto en la clase: '" + to_string(idClase) + "'.");
+                }
+                else
+                {
+                    inscriptos[iter] = inscriptos[cantInscriptosAux];
+                    clases[iterClase]->setCantInscriptos(cantInscriptosAux--);
+                }
+            }
+            else
+            {
+                throw std::invalid_argument("\n  ERROR - No existe una clase registrada para el numero de id: '" + to_string(idClase) + "'.");
+            }
+        }
+        else
+        {
+            throw std::invalid_argument("\n  ERROR - No existe un socio registrado para el numero de cedula: '" + ciSocio + "'.");
+        }
+    }
+    else if (cantClasesCreadas <= 0)
+    {
+
+        throw std::invalid_argument("\n  ERROR - No existen clases creadas.");
     }
     else
     {
         throw std::invalid_argument("  ERROR - No hay ningun socio ingresado al sistema");
-    }
-
-    if (cantClasesCreadas > 0) // Verifica que exista al menos una clase ingresada en el sistema
-    {
-        while ((!existeClase) && (iterClase < cantClasesCreadas)) // Verifica que exista la clase
-        {
-            if (clases[iterClase]->getId() == idClase)
-            {
-                existeClase = true;
-            }
-            if (!existeClase)
-            {
-                iterClase++;
-            }
-        }
-    }
-    else
-    {
-        throw std::invalid_argument("  ERROR - No hay ninguna clase ingresada en el sistema.");
-    }
-
-    if (!existeSocio) // Si no existe el socio
-    {
-        throw std::invalid_argument("  ERROR - No existe un socio con esa CI.");
-    }
-    else if (!existeClase) // Si no existe la clase
-    {
-        throw std::invalid_argument("  ERROR - No existe una clase con ese id.");
-    }else
-    {
-        //Reordenar arreglo
-        Inscripcion *inscriptos = clases[iterClase]->getInscriptos();
-        Inscripcion aux;
-        int iter=0;
-        int cantInscriptosAux=clases[iterClase]->getCantInscriptos();
-        bool esSocio = false;
-        do{
-            
-            if(inscriptos[iter].getSocio()->getCi() == ciSocio){
-                esSocio=true;
-            }
-            else
-            {
-                iter++;
-            }
-
-        }while (!esSocio && (iter<cantInscriptosAux));
-        
-        if(!esSocio){
-            throw std::invalid_argument("  ERROR - El socio con la cedula: '"+ciSocio+"' no se encuentra inscripto en la clase: '"+to_string(idClase)+"'.");
-        } else {
-            inscriptos[iter]=inscriptos[cantInscriptosAux];
-            clases[iterClase]->setCantInscriptos(cantInscriptosAux--);
-        }
-
     }
 }
 
