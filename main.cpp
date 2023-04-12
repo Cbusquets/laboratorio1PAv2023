@@ -110,7 +110,8 @@ int main()
 
                 } while ((cantBicis > 50) || (cantBicis < 1));
 
-                cSpinning = DtSpinning(idClase, nombreClase, turno, cantBicis, SPINNING);
+                // cSpinning = DtSpinning(idClase, nombreClase, turno, cantBicis, SPINNING);
+                cSpinning = DtSpinning(idClase, nombreClase, turno, cantBicis);
 
                 try
                 {
@@ -141,7 +142,8 @@ int main()
                     enRambla = false;
                 }
 
-                cEntrenamiento = DtEntrenamiento(idClase, nombreClase, turno, enRambla, ENTRENAMIENTO);
+                // cEntrenamiento = DtEntrenamiento(idClase, nombreClase, turno, enRambla, ENTRENAMIENTO);
+                cEntrenamiento = DtEntrenamiento(idClase, nombreClase, turno, enRambla);
 
                 try
                 {

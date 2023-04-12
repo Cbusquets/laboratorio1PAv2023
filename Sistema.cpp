@@ -76,9 +76,9 @@ void Sistema::agregarClase(DtClase &clase)
         }
         else
         {
-            cout << "DtEntrenamiento::"+to_string(typeid(clase) == typeid(DtEntrenamiento))+""<<endl;
-            cout << "DtSpinning::"+to_string(typeid(clase) == typeid(DtSpinning))+""<<endl;
-            
+            cout << "DtEntrenamiento::" + to_string(typeid(clase) == typeid(DtEntrenamiento)) + "" << endl;
+            cout << "DtSpinning::" + to_string(typeid(clase) == typeid(DtSpinning)) + "" << endl;
+
             if (typeid(clase) == typeid(DtSpinning))
             {
                 DtSpinning *dtSpinning = dynamic_cast<DtSpinning *>(&clase);
@@ -253,7 +253,7 @@ void Sistema::borrarInscripcion(string ciSocio, int idClase)
                 }
                 else
                 {
-                    inscriptos[iter] = inscriptos[cantInscriptosAux-1];
+                    inscriptos[iter] = inscriptos[cantInscriptosAux - 1];
                     clases[iterClase]->setCantInscriptos(cantInscriptosAux--);
 
                     cout << "   OK - Se ha eliminado la inscripcion del socio: '" << ciSocio << "' a la clase '" << to_string(idClase) << "' correctamente." << '\n';
@@ -297,14 +297,16 @@ void Sistema::imprimirClases()
             cout << "Nombre: " << clases[i]->getNombre() << "\n";
             cout << "Turno: " << turnos[clases[i]->getTurno()] << "\n";
             cout << "Cant inscriptos: " << clases[i]->getCantInscriptos() << "\n";
-            
-            if(typeid(*clases[i]) == typeid(Entrenamiento))
+
+            if (typeid(*clases[i]) == typeid(Entrenamiento))
             {
-                Entrenamiento *entr=dynamic_cast<Entrenamiento *>(clases[i]);
-                string print = entr->getEnRambla() ? "Si": "No";
+                Entrenamiento *entr = dynamic_cast<Entrenamiento *>(clases[i]);
+                string print = entr->getEnRambla() ? "Si" : "No";
 
                 cout << "En rambla: " << print << "\n";
-            } else if(typeid(*clases[i]) == typeid(Spinning)){
+            }
+            else if (typeid(*clases[i]) == typeid(Spinning))
+            {
                 cout << "Cant bicis: " << clases[i]->cupo() << "\n";
             }
             cout << endl;
