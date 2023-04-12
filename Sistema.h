@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <cstring>
 #include <exception>
+#include <typeinfo>
 #include "Definiciones.h"
 #include "Socio.h"
 #include "Inscripcion.h"
