@@ -76,7 +76,10 @@ void Sistema::agregarClase(DtClase &clase)
         }
         else
         {
-            if (clase.getType() == 0)
+            cout << "DtEntrenamiento::"+to_string(typeid(clase) == typeid(DtEntrenamiento))+""<<endl;
+            cout << "DtSpinning::"+to_string(typeid(clase) == typeid(DtSpinning))+""<<endl;
+            
+            if (typeid(clase) == typeid(DtSpinning))
             {
                 DtSpinning *dtSpinning = dynamic_cast<DtSpinning *>(&clase);
                 clases[cantClasesCreadas] = new Spinning(dtSpinning->getId(), dtSpinning->getNombre(), dtSpinning->getTurno(), dtSpinning->getCantBicicletas());
