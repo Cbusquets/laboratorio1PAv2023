@@ -14,15 +14,14 @@ using std::cin;
 
 int main()
 {
-
-    bool salir = false;
     Sistema obj;
+    bool salir = false;
 
     do
     {
 
         cout << "\n----------------------------\n";
-        cout << "Elegi la opcion que desees\n \n";
+        cout << "Elige el numero de opcion que desees:\n \n";
         cout << "  1) Agregar Socio\n";
         cout << "  2) Agregar Clase\n";
         cout << "  3) Agregar Inscripcion\n";
@@ -37,12 +36,12 @@ int main()
 
         if (opc == 1) // Agregar socio
         {
-
             string ciSocio, nombreSocio;
-
-            cout << "Ingresa la cedula del socio: ";
+            cout << "\nIngrese los siguientes datos por favor:\n";
+            cout << "---------------------------------------\n\n";
+            cout << "Ingrese la cedula del socio: ";
             cin >> ciSocio;
-            cout << "Ingresa el nombre del socio: ";
+            cout << "Ingrese el nombre del socio: ";
             cin >> nombreSocio;
 
             try
@@ -56,6 +55,7 @@ int main()
         }
         else if (opc == 2) // Agregar Clase
         {
+            
             int idClase;
             string nombreClase;
             int idTurno;
@@ -64,6 +64,8 @@ int main()
             DtSpinning cSpinning;
             DtEntrenamiento cEntrenamiento;
 
+            cout << "\nIngrese los siguientes datos por favor:\n";
+            cout << "---------------------------------------\n\n";
             cout << "Ingresa id de la clase: ";
             cin >> idClase;
             cout << "Ingresa el nombre de la clase: ";
@@ -72,7 +74,7 @@ int main()
             // Solicita el turno
             do
             {
-                cout << "Ingresá el turno: \n   1) Mañana \n   2) Tarde \n   3) Noche\n";
+                cout << "Ingrese el turno: \n   1) Mañana \n   2) Tarde \n   3) Noche\n";
                 cin >> idTurno;
             } while ((idTurno < 1) || (idTurno > 3));
 
@@ -92,7 +94,7 @@ int main()
             // Pregunta tipo de clase
             do
             {
-                cout << "Ingresa el tipo de clase: \n   1) Spinning \n   2) Entrenamiento\n";
+                cout << "Ingrese el tipo de clase: \n   1) Spinning \n   2) Entrenamiento\n";
                 cin >> idTipoClase;
             } while ((idTipoClase < 1) || (idTipoClase > 2));
 
@@ -103,7 +105,7 @@ int main()
 
                 do
                 {
-                    cout << "Ingrese la cantidad de bicis: ";
+                    cout << "Ingrese la cantidad de bicis, con un máximo de 50: ";
                     cin >> cantBicis;
 
                 } while ((cantBicis > 50) || (cantBicis < 1));
@@ -154,7 +156,7 @@ int main()
         }
         else if (opc == 3) // Agregar Inscripcion
         {
-
+            
             string ciSocio;
             int idClaseInscr;
             int diaInscr;
@@ -184,10 +186,21 @@ int main()
         }
         else if (opc == 4) // Borrar inscripcion
         {
-            cout << "   ERROR - No implementada";
+            string ciSocio;
+            int idClase;
+            cout << "\nIngrese los siguientes datos por favor:\n";
+            cout << "---------------------------------------\n\n";
+            cout << "Ingresa ci del socio: ";
+            cin >> ciSocio;
+            cout << "Ingresa el id de la clase: ";
+            cin >> idClase;
+
+            obj.borrarInscripcion(ciSocio, idClase);
+            // cout << "   ERROR - No implementada";
         }
         else if (opc == 5) // Salir
         {
+            cout << "  ¡Hasta la proxima!"<< endl;
             salir = true;
         }
         else if (opc == 6) // Imprimir todas las clases
@@ -200,7 +213,7 @@ int main()
         }
         else
         {
-            cout << "  ERROR - Opcion incorrecta";
+            cout << "  ERROR - Opcion incorrecta. \n";
         }
 
     } while (!salir);
