@@ -55,7 +55,7 @@ int main()
         }
         else if (opc == 2) // Agregar Clase
         {
-            
+
             int idClase;
             string nombreClase;
             int idTurno;
@@ -156,7 +156,7 @@ int main()
         }
         else if (opc == 3) // Agregar Inscripcion
         {
-            
+
             string ciSocio;
             int idClaseInscr;
             int diaInscr;
@@ -195,12 +195,18 @@ int main()
             cout << "Ingresa el id de la clase: ";
             cin >> idClase;
 
-            obj.borrarInscripcion(ciSocio, idClase);
-            // cout << "   ERROR - No implementada";
+            try
+            {
+                obj.borrarInscripcion(ciSocio, idClase);
+            }
+            catch (std::exception &e)
+            {
+                std::cerr << e.what() << '\n';
+            }
         }
         else if (opc == 5) // Salir
         {
-            cout << "  ¡Hasta la proxima!"<< endl;
+            cout << "  ¡Hasta la proxima!" << endl;
             salir = true;
         }
         else if (opc == 6) // Imprimir todas las clases
