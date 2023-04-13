@@ -1,6 +1,9 @@
 #ifndef DTENTRENAMIENTO_H
 #define DTENTRENAMIENTO_H
 #include "DtClase.h"
+#include <string>
+
+using namespace std;
 
 class DtEntrenamiento : public DtClase
 {
@@ -9,13 +12,12 @@ private:
 
 public:
 	DtEntrenamiento();
-	// DtEntrenamiento(int id, std::string nombre, Turno turno, bool enRambla, claseType type);
-	DtEntrenamiento(int id, std::string nombre, Turno turno, bool enRambla);
+	DtEntrenamiento(int id, string nombre, Turno turno, bool enRambla);
 
 	bool getEnRambla();
-	std::string getenRamblaString();
+	string getenRamblaString();
 
-	friend std::ostream &operator<<(std::ostream &o, DtEntrenamiento &dt);
+	friend ostream &operator<<(ostream *o, DtEntrenamiento &dt);
 	~DtEntrenamiento();
 };
 

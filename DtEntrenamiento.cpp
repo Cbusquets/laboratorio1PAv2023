@@ -3,9 +3,10 @@
 #include "Definiciones.h"
 #include <string>
 
+using namespace std;
+
 DtEntrenamiento::DtEntrenamiento() {}
 
-// DtEntrenamiento::DtEntrenamiento(int id, std::string nombre, Turno turno, bool enRambla, claseType type) : DtClase(id, nombre, turno, type)
 DtEntrenamiento::DtEntrenamiento(int id, std::string nombre, Turno turno, bool enRambla) : DtClase(id, nombre, turno)
 {
 
@@ -17,7 +18,7 @@ bool DtEntrenamiento::getEnRambla()
 	return this->enRambla;
 }
 
-std::string DtEntrenamiento::getenRamblaString()
+string DtEntrenamiento::getenRamblaString()
 {
 	if (this->enRambla)
 		return "Sí";
@@ -25,9 +26,9 @@ std::string DtEntrenamiento::getenRamblaString()
 		return "No";
 }
 
-std::ostream &operator<<(std::ostream &o, DtEntrenamiento &dt)
+ostream &operator<<(ostream &o, DtEntrenamiento &dt)
 {
-	return o << "ID: " << dt.getId() << "\nNombre: " << dt.getNombre() << "\nTurno: " << dt.getTurno() << "\nEn Rambla: " << dt.getenRamblaString() << std::endl;
+	return o << "Id Clase: " << dt.getId() << "\nNombre: " << dt.getNombre() << "\nTurno: " << dt.getTurno() << "\nEn Rambla: " << dt.getenRamblaString() << std::endl;
 }
 
 DtEntrenamiento::~DtEntrenamiento() {}
