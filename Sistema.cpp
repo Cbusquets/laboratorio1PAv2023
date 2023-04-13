@@ -1,5 +1,10 @@
 #include "Sistema.h"
 #include "Clase.h"
+#include "DtSpinning.h"
+#include "DtEntrenamiento.h"
+#include <string.h>
+#include <stdio.h>
+#include <iostream>
 
 using namespace std;
 
@@ -300,7 +305,7 @@ void Sistema::obtenerClase(int idClase)
 
             if (typeid(*clases[pos]) == typeid(Spinning))
             {
-                Spinning *clase = dynamic_cast<Spinning *>(clases[pos]);
+                DtSpinning *clase = dynamic_cast<DtSpinning *>(clases[pos]);
                 DtSpinning *csp = new DtSpinning(clase->getId(), clase->getNombre(), clase->getTurno(), clase->getCantBicicletas());
                 cout << csp << endl;
             }
