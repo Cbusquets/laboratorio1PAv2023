@@ -3,6 +3,7 @@
 #include <string.h>
 #include <cstring>
 #include <exception>
+#include <limits>
 #include "Definiciones.h"
 #include "Sistema.h"
 #include "DtSpinning.h"
@@ -12,10 +13,15 @@
 using namespace std;
 using std::cin;
 
+void getStringInput(string &str);
+void getIntegerInput(int &num);
+
+
 int main()
 {
     Sistema obj;
     bool salir = false;
+    int opc;
 
     do
     {
@@ -31,8 +37,8 @@ int main()
         cout << "  7) Imprimir todos los socios \n";
         cout << "----------------------------\n\n";
 
-        int opc;
-        cin >> opc;
+        getIntegerInput(opc);
+        //cin >> opc;
 
         if (opc == 1) // Agregar socio
         {
@@ -110,7 +116,8 @@ int main()
 
                 } while ((cantBicis > 50) || (cantBicis < 1));
 
-                cSpinning = DtSpinning(idClase, nombreClase, turno, cantBicis, SPINNING);
+                // cSpinning = DtSpinning(idClase, nombreClase, turno, cantBicis, SPINNING);
+                cSpinning = DtSpinning(idClase, nombreClase, turno, cantBicis);
 
                 try
                 {
@@ -141,7 +148,8 @@ int main()
                     enRambla = false;
                 }
 
-                cEntrenamiento = DtEntrenamiento(idClase, nombreClase, turno, enRambla, ENTRENAMIENTO);
+                // cEntrenamiento = DtEntrenamiento(idClase, nombreClase, turno, enRambla, ENTRENAMIENTO);
+                cEntrenamiento = DtEntrenamiento(idClase, nombreClase, turno, enRambla);
 
                 try
                 {
@@ -164,15 +172,20 @@ int main()
             int anioInscr;
 
             cout << "Ingresa el numero de cedula del socio: " << endl;
-            cin >> ciSocio;
+            getStringInput(ciSocio);
+            //cin >> ciSocio;
             cout << "Ingresa el id de la clase a la que se desea inscribir: " << endl;
-            cin >> idClaseInscr;
+            getIntegerInput(idClaseInscr);
+            //cin >> idClaseInscr;
             cout << "Ingresa el dia de la inscripcion: " << endl;
-            cin >> diaInscr;
+            getIntegerInput(diaInscr);
+            //cin >> diaInscr;
             cout << "Ingresa el mes de la inscripcion: " << endl;
-            cin >> mesInscr;
+            getIntegerInput(mesInscr);
+            //cin >> mesInscr;
             cout << "Ingresa el anio de la inscripcion: " << endl;
-            cin >> anioInscr;
+            getIntegerInput(anioInscr);
+            //cin >> anioInscr;
 
             try
             {
@@ -191,9 +204,11 @@ int main()
             cout << "\nIngrese los siguientes datos por favor:\n";
             cout << "---------------------------------------\n\n";
             cout << "Ingresa ci del socio: ";
-            cin >> ciSocio;
+            getStringInput(ciSocio);
+            //cin >> ciSocio;
             cout << "Ingresa el id de la clase: ";
-            cin >> idClase;
+            getIntegerInput(idClase);
+            //cin >> idClase;
 
             try
             {
@@ -225,4 +240,19 @@ int main()
     } while (!salir);
 
     return 0;
+}
+
+void getStringInput(string &str){
+    cin >> ws;
+    getline(cin, str);
+}
+
+void getIntegerInput(int &num){
+
+    while (!(cin>>num))
+    {
+        cout << "Se debe ingresar un valor numerico. Intente nuevamente:"<<endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
 }

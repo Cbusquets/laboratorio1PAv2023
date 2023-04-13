@@ -9,7 +9,8 @@ private:
 
 public:
 	DtSpinning();
-	DtSpinning(int id, std::string nombre, Turno turno, int cantBicicletas, claseType type);
+	// DtSpinning(int id, std::string nombre, Turno turno, int cantBicicletas, claseType type);
+	DtSpinning(int id, std::string nombre, Turno turno, int cantBicicletas);
 	int getCantBicicletas();
 	~DtSpinning();
 };
