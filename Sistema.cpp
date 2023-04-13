@@ -254,7 +254,7 @@ void Sistema::borrarInscripcion(string ciSocio, int idClase)
                 else
                 {
                     inscriptos[iter] = inscriptos[cantInscriptosAux - 1];
-                    clases[iterClase]->setCantInscriptos(cantInscriptosAux--);
+                    clases[iterClase]->setCantInscriptos(cantInscriptosAux - 1);
 
                     cout << "   OK - Se ha eliminado la inscripcion del socio: '" << ciSocio << "' a la clase '" << to_string(idClase) << "' correctamente." << '\n';
                 }
