@@ -284,6 +284,14 @@ void Sistema::borrarInscripcion(string ciSocio, int idClase)
 
 void Sistema::imprimirClases()
 {
+    ofstream classFile;
+
+    classFile.open("clases.txt", ofstream::out | ofstream::trunc);
+
+    if (!classFile.is_open()) {
+        throw std::invalid_argument("Error al abrir el archivo");
+    }
+
     if (cantClasesCreadas == 0)
     {
         cout << "No hay clases creadas";
@@ -293,23 +301,23 @@ void Sistema::imprimirClases()
         for (int i = 0; i < cantClasesCreadas; i++)
         {
             string turnos[] = {"MANANA", "TARDE", "NOCHE"};
-            cout << "Id: " << clases[i]->getId() << "\n";
-            cout << "Nombre: " << clases[i]->getNombre() << "\n";
-            cout << "Turno: " << turnos[clases[i]->getTurno()] << "\n";
-            cout << "Cant inscriptos: " << clases[i]->getCantInscriptos() << "\n";
+            classFile << "Id: " << clases[i]->getId() << "\n";
+            classFile << "Nombre: " << clases[i]->getNombre() << "\n";
+            classFile << "Turno: " << turnos[clases[i]->getTurno()] << "\n";
+            classFile << "Cant inscriptos: " << clases[i]->getCantInscriptos() << "\n";
 
             if (typeid(*clases[i]) == typeid(Entrenamiento))
             {
                 Entrenamiento *entr = dynamic_cast<Entrenamiento *>(clases[i]);
                 string print = entr->getEnRambla() ? "Si" : "No";
 
-                cout << "En rambla: " << print << "\n";
+                classFile << "En rambla: " << print << "\n";
             }
             else if (typeid(*clases[i]) == typeid(Spinning))
             {
-                cout << "Cant bicis: " << clases[i]->cupo() << "\n";
+                classFile << "Cant bicis: " << clases[i]->cupo() << "\n";
             }
-            cout << endl;
+            classFile << endl;
         }
     }
 }
