@@ -231,7 +231,6 @@ void Sistema::borrarInscripcion(string ciSocio, int idClase)
 
             if (existeClase)
             {
-                // Reordenar arreglo
                 Inscripcion *inscriptos = clases[iterClase]->getInscriptos();
                 int iter = 0, cantInscriptosAux = clases[iterClase]->getCantInscriptos();
                 bool esSocio = false;
