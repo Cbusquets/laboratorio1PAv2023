@@ -13,7 +13,7 @@ std::string Socio::getCi()
 	return this->ci;
 }
 
-std::string  Socio::getNombre()
+std::string Socio::getNombre()
 {
 	return this->nombre;
 }
@@ -28,4 +28,4 @@ void Socio::setNombre(std::string nombre)
 	this->nombre = nombre;
 }
 
-Socio::~Socio(){}
+Socio::~Socio() {}

@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include <cstring>
 #include <exception>
+#include <typeinfo>
+#include <fstream>
 #include "Definiciones.h"
 #include "Socio.h"
 #include "Inscripcion.h"
