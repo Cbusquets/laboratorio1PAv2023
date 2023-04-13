@@ -3,39 +3,40 @@
 
 DtClase::DtClase() {}
 
-DtClase::DtClase(int id, std::string nombre, Turno turno, claseType type)
+// DtClase::DtClase(int id, std::string nombre, Turno turno, claseType type)
+DtClase::DtClase(int id, std::string nombre, Turno turno)
 {
 	this->id = id;
-    this->nombre = nombre;
-    this->turno = turno;
-	this->type=type;
+	this->nombre = nombre;
+	this->turno = turno;
+	// this->type=type;
 }
 
 int DtClase::getId()
 {
-    return this->id;
+	return this->id;
 }
 
 std::string DtClase::getNombre()
 {
-    return this->nombre;
+	return this->nombre;
 }
 
 std::string DtClase::getTurnoString()
 {
-    std::string result;
+	std::string result;
 
 	switch (this->turno)
 	{
-		case MANANA:
-			result = "MAÑANA";
-			break;
-		case TARDE:
-			result = "TARDE";
-			break;
-		case NOCHE:
-			result = "NOCHE";
-			break;
+	case MANANA:
+		result = "MAÑANA";
+		break;
+	case TARDE:
+		result = "TARDE";
+		break;
+	case NOCHE:
+		result = "NOCHE";
+		break;
 	}
 	return result;
 }
@@ -45,8 +46,8 @@ Turno DtClase::getTurno()
 	return this->turno;
 }
 
-claseType DtClase::getType(){
-	return this->type;
-}
+// claseType DtClase::getType(){
+// 	return this->type;
+// }
 
-DtClase::~DtClase(){}
+DtClase::~DtClase() {}

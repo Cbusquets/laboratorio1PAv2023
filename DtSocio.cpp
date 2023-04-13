@@ -4,7 +4,7 @@ DtSocio::DtSocio() {}
 
 DtSocio::DtSocio(int ci, std::string nombre)
 {
-	this->ci = ci;
+    this->ci = ci;
     this->nombre = nombre;
 }
 
@@ -18,4 +18,4 @@ std::string DtSocio::getNombre()
     return this->nombre;
 }
 
-DtSocio::~DtSocio(){}
+DtSocio::~DtSocio() {}

@@ -2,17 +2,17 @@
 #define SPINNING_H
 #include "Clase.h"
 
-class Spinning: public Clase
+class Spinning : public Clase
 {
-	private:
-		int cantBicicletas;
+private:
+	int cantBicicletas;
 
-	public:
-		Spinning();
-		Spinning(int id, std::string nombre, Turno turno, int cantBicicletas);
-		int getCantBicicletas();
-        virtual int cupo();
-        ~Spinning();
+public:
+	Spinning();
+	Spinning(int id, std::string nombre, Turno turno, int cantBicicletas);
+	int getCantBicicletas();
+	virtual int cupo();
+	~Spinning();
 };
 
 #endif
