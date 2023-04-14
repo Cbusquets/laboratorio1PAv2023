@@ -1,5 +1,5 @@
-todo: main.o Sistema.o Clase.o DtClase.o DtEntrenamiento.o DtFecha.o DtSocio.o DtSpinning.o Entrenamiento.o Inscripcion.o Socio.o Spinning.o Turno.o
-	g++ -g -Wall -o main main.o Sistema.o Clase.o DtClase.o DtEntrenamiento.o DtFecha.o DtSocio.o DtSpinning.o Entrenamiento.o Inscripcion.o Socio.o Spinning.o Turno.o
+todo: main.o Sistema.o Clase.o DtClase.o DtEntrenamiento.o DtFecha.o DtSocio.o DtSpinning.o Entrenamiento.o Inscripcion.o Socio.o Spinning.o
+	g++ -g -Wall -o main main.o Sistema.o Clase.o DtClase.o DtEntrenamiento.o DtFecha.o DtSocio.o DtSpinning.o Entrenamiento.o Inscripcion.o Socio.o Spinning.o
 main.o: main.cpp
 	g++ -g -Wall -c main.cpp
 Sistema.o: Sistema.cpp Sistema.h
@@ -24,8 +24,6 @@ Socio.o: Socio.cpp Socio.h
 	g++ -g -Wall -c Socio.cpp Socio.h
 Spinning.o: Spinning.cpp Spinning.h
 	g++ -g -Wall -c Spinning.cpp 
-Turno.o: Turno.cpp Turno.h
-	g++ -g -Wall -c Turno.cpp
 clean:
 	rm -f *.o
 	rm -f *.h.gch
