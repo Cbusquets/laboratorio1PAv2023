@@ -5,7 +5,6 @@
 
 DtEntrenamiento::DtEntrenamiento() {}
 
-// DtEntrenamiento::DtEntrenamiento(int id, std::string nombre, Turno turno, bool enRambla, claseType type) : DtClase(id, nombre, turno, type)
 DtEntrenamiento::DtEntrenamiento(int id, std::string nombre, Turno turno, bool enRambla) : DtClase(id, nombre, turno)
 {
 

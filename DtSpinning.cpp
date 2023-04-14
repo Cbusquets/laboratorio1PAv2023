@@ -3,7 +3,6 @@
 
 DtSpinning::DtSpinning() {}
 
-// DtSpinning::DtSpinning(int id, std::string nombre, Turno turno, int cantBicicletas, claseType type) : DtClase(id, nombre, turno, type)
 DtSpinning::DtSpinning(int id, std::string nombre, Turno turno, int cantBicicletas) : DtClase(id, nombre, turno)
 {
 	this->cantBicicletas = cantBicicletas;

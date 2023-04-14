@@ -32,7 +32,6 @@ public:
 	void agregarClase(DtClase &clase);
 	void agregarInscripcion(std::string ciSocio, int idClase, DtFecha fecha);
 	void borrarInscripcion(std::string ciSocio, int idClase);
-	// TESTS
 	void imprimirClases();
 	void imprimirSocios();
 	~Sistema();
