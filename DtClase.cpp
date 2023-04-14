@@ -3,13 +3,11 @@
 
 DtClase::DtClase() {}
 
-// DtClase::DtClase(int id, std::string nombre, Turno turno, claseType type)
 DtClase::DtClase(int id, std::string nombre, Turno turno)
 {
 	this->id = id;
 	this->nombre = nombre;
 	this->turno = turno;
-	// this->type=type;
 }
 
 int DtClase::getId()
@@ -45,9 +43,5 @@ Turno DtClase::getTurno()
 {
 	return this->turno;
 }
-
-// claseType DtClase::getType(){
-// 	return this->type;
-// }
 
 DtClase::~DtClase() {}
