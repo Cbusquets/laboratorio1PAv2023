@@ -16,7 +16,6 @@ using std::cin;
 void getStringInput(string &str);
 void getIntegerInput(int &num);
 
-
 int main()
 {
     Sistema obj;
@@ -33,12 +32,12 @@ int main()
         cout << "  3) Agregar Inscripcion\n";
         cout << "  4) Borrar Inscripcion\n";
         cout << "  5) Salir \n";
-        cout << "  6) Imprimir todas las clases \n";
-        cout << "  7) Imprimir todos los socios \n";
+        cout << "  6) Obtener clase \n";
+        cout << "  7) Imprimir todas las clases \n";
+        cout << "  8) Imprimir todos los socios \n";
         cout << "----------------------------\n\n";
 
         getIntegerInput(opc);
-        //cin >> opc;
 
         if (opc == 1) // Agregar socio
         {
@@ -133,7 +132,6 @@ int main()
                     
                 } while ((cantBicis > 50) || (cantBicis < 1));
 
-                // cSpinning = DtSpinning(idClase, nombreClase, turno, cantBicis, SPINNING);
                 cSpinning = DtSpinning(idClase, nombreClase, turno, cantBicis);
 
                 try
@@ -166,7 +164,6 @@ int main()
                     enRambla = false;
                 }
 
-                // cEntrenamiento = DtEntrenamiento(idClase, nombreClase, turno, enRambla, ENTRENAMIENTO);
                 cEntrenamiento = DtEntrenamiento(idClase, nombreClase, turno, enRambla);
 
                 try
@@ -191,19 +188,14 @@ int main()
 
             cout << "Ingresa el numero de cedula del socio: " << endl;
             getStringInput(ciSocio);
-            //cin >> ciSocio;
             cout << "Ingresa el id de la clase a la que se desea inscribir: " << endl;
             getIntegerInput(idClaseInscr);
-            //cin >> idClaseInscr;
             cout << "Ingresa el dia de la inscripcion: " << endl;
             getIntegerInput(diaInscr);
-            //cin >> diaInscr;
             cout << "Ingresa el mes de la inscripcion: " << endl;
             getIntegerInput(mesInscr);
-            //cin >> mesInscr;
             cout << "Ingresa el anio de la inscripcion: " << endl;
             getIntegerInput(anioInscr);
-            //cin >> anioInscr;
 
             try
             {
@@ -223,10 +215,8 @@ int main()
             cout << "---------------------------------------\n\n";
             cout << "Ingresa ci del socio: ";
             getStringInput(ciSocio);
-            //cin >> ciSocio;
             cout << "Ingresa el id de la clase: ";
             getIntegerInput(idClase);
-            //cin >> idClase;
 
             try
             {
@@ -242,11 +232,26 @@ int main()
             cout << "  ¡Hasta la proxima!" << endl;
             salir = true;
         }
-        else if (opc == 6) // Imprimir todas las clases
+        else if (opc == 6)
+        { // Obtener partida con sobrecarga de operador
+            int idClase;
+            cout << "Ingresa el id de la clase: ";
+            getIntegerInput(idClase);
+
+            try
+            {
+                obj.obtenerClase(idClase);
+            }
+            catch (std::exception &e)
+            {
+                std::cerr << e.what() << '\n';
+            }
+        }
+        else if (opc == 7) // Imprimir todas las clases
         {
             obj.imprimirClases();
         }
-        else if (opc == 7) // Imprimir todos los socios
+        else if (opc == 8) // Imprimir todos los socios
         {
             obj.imprimirSocios();
         }
@@ -254,22 +259,24 @@ int main()
         {
             cout << "  ERROR - Opcion incorrecta. \n";
         }
-
     } while (!salir);
 
     return 0;
 }
 
-void getStringInput(string &str){
+// Funciones Auxiliares
+void getStringInput(string &str)
+{
     cin >> ws;
     getline(cin, str);
 }
 
-void getIntegerInput(int &num){
+void getIntegerInput(int &num)
+{
 
-    while (!(cin>>num))
+    while (!(cin >> num))
     {
-        cout << "Se debe ingresar un valor numerico. Intente nuevamente:"<<endl;
+        cout << "Se debe ingresar un valor numerico. Intente nuevamente:" << endl;
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }

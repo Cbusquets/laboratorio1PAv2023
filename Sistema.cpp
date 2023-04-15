@@ -1,5 +1,10 @@
 #include "Sistema.h"
 #include "Clase.h"
+#include "DtSpinning.h"
+#include "DtEntrenamiento.h"
+#include <string.h>
+#include <stdio.h>
+#include <iostream>
 
 using namespace std;
 
@@ -76,9 +81,6 @@ void Sistema::agregarClase(DtClase &clase)
         }
         else
         {
-            cout << "DtEntrenamiento::" + to_string(typeid(clase) == typeid(DtEntrenamiento)) + "" << endl;
-            cout << "DtSpinning::" + to_string(typeid(clase) == typeid(DtSpinning)) + "" << endl;
-
             if (typeid(clase) == typeid(DtSpinning))
             {
                 DtSpinning *dtSpinning = dynamic_cast<DtSpinning *>(&clase);
@@ -99,7 +101,7 @@ void Sistema::agregarClase(DtClase &clase)
     }
 }
 
-void Sistema::agregarInscripcion(std::string ciSocio, int idClase, DtFecha fecha)
+void Sistema::agregarInscripcion(string ciSocio, int idClase, DtFecha fecha)
 {
 
     bool existeSocio = false;
@@ -229,7 +231,6 @@ void Sistema::borrarInscripcion(string ciSocio, int idClase)
 
             if (existeClase)
             {
-                // Reordenar arreglo
                 Inscripcion *inscriptos = clases[iterClase]->getInscriptos();
                 int iter = 0, cantInscriptosAux = clases[iterClase]->getCantInscriptos();
                 bool esSocio = false;
@@ -280,6 +281,50 @@ void Sistema::borrarInscripcion(string ciSocio, int idClase)
     }
 }
 
+void Sistema::obtenerClase(int idClase)
+{
+    bool encontrado = false;
+    int pos = 0;
+    if (cantClasesCreadas > 0) // Verifica que exista al menos una clase
+    {
+        while ((!encontrado) && (pos < cantClasesCreadas)) // Busca la clase con id idClase
+        {
+            if (clases[pos]->getId() == idClase)
+            {
+                encontrado = true;
+            }
+            else
+            {
+                pos++;
+            }
+        }
+
+        if (encontrado) // Si se encontró la clase
+        {
+
+            if (typeid(*clases[pos]) == typeid(Spinning))
+            {
+                DtSpinning *clase = dynamic_cast<DtSpinning *>(clases[pos]);
+                DtSpinning *csp = new DtSpinning(clase->getId(), clase->getNombre(), clase->getTurno(), clase->getCantBicicletas());
+                cout << csp << endl;
+            }
+            else if (typeid(*clases[pos]) == typeid(Entrenamiento))
+            {
+                Entrenamiento *clase = dynamic_cast<Entrenamiento *>(clases[pos]);
+                DtEntrenamiento *centr = new DtEntrenamiento(clase->getId(), clase->getNombre(), clase->getTurno(), clase->getEnRambla());
+                cout << centr << endl;
+            }
+        }
+        else
+        {
+            throw std::invalid_argument("\n  ERROR - No existe una clase registrada para el numero de id: '" + to_string(idClase) + "'.");
+        }
+    }
+    else
+    {
+        throw std::invalid_argument("\n  ERROR - No existen clases creadas.");
+    }
+}
 /* TEST */
 
 void Sistema::imprimirClases()

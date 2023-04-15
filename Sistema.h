@@ -28,10 +28,12 @@ private:
 
 public:
 	Sistema();
-	void agregarSocio(std::string ci, std::string nombre);
+	void agregarSocio(string ci, string nombre);
 	void agregarClase(DtClase &clase);
-	void agregarInscripcion(std::string ciSocio, int idClase, DtFecha fecha);
-	void borrarInscripcion(std::string ciSocio, int idClase);
+	void agregarInscripcion(string ciSocio, int idClase, DtFecha fecha);
+	void borrarInscripcion(string ciSocio, int idClase);
+	void obtenerClase(int idClase);
+	// TESTS
 	void imprimirClases();
 	void imprimirSocios();
 	~Sistema();
