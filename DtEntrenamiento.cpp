@@ -28,7 +28,7 @@ string DtEntrenamiento::getenRamblaString()
 
 ostream &operator<<(ostream &o, DtEntrenamiento &dt)
 {
-	return o << "Id Clase: " << dt.getId() << "\nNombre: " << dt.getNombre() << "\nTurno: " << dt.getTurno() << "\nEn Rambla: " << dt.getenRamblaString() << std::endl;
+	o<< "Id Clase: " << dt.getId() << "\nNombre: " << dt.getNombre() << "\nTurno: " << dt.getTurno() << "\nEn Rambla: " << dt.getenRamblaString() << std::endl;
 }
 
 DtEntrenamiento::~DtEntrenamiento() {}

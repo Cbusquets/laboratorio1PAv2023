@@ -13,7 +13,7 @@ private:
 	int id;
 	string nombre;
 	Turno turno;
-	Inscripcion inscripciones[MAX_CLASES];
+	Inscripcion *inscripciones[MAX_CLASES];
 	int cantInscriptos;
 
 public:
@@ -33,7 +33,7 @@ public:
 	void setTurno(Turno turno);
 	void setCantInscriptos(int cant);
 	virtual int cupo() = 0;
-	void setInscripcion(Inscripcion ins);
+	void setInscripcion(Inscripcion *inscr);
 
 	virtual ~Clase();
 };

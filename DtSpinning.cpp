@@ -17,7 +17,7 @@ int DtSpinning::getCantBicicletas()
 
 ostream &operator<<(ostream &o, DtSpinning &dt)
 {
-	return o << "Id Clase: " << dt.getId() << "\nNombre: " << dt.getNombre() << "\nTurno: " << dt.getTurno() << "\nCantidad de bicicletas: " << dt.getCantBicicletas() << endl;
+	o << "Id Clase: " << dt.getId() << "\nNombre: " << dt.getNombre() << "\nTurno: " << dt.getTurno() << "\nCantidad de bicicletas: " << dt.getCantBicicletas() << endl;
 }
 
 DtSpinning::~DtSpinning() {}

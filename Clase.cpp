@@ -36,7 +36,7 @@ int Clase::getCantInscriptos()
 
 Inscripcion *Clase::getInscriptos()
 {
-	return this->inscripciones;
+	return *(this->inscripciones);
 }
 
 //
@@ -62,7 +62,7 @@ void Clase::setCantInscriptos(int cant)
 	this->cantInscriptos = cant;
 }
 
-void Clase::setInscripcion(Inscripcion inscr)
+void Clase::setInscripcion(Inscripcion *inscr)
 {
 	this->inscripciones[cantInscriptos] = inscr;
 	this->cantInscriptos++;

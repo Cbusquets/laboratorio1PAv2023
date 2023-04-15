@@ -162,7 +162,7 @@ void Sistema::agregarInscripcion(string ciSocio, int idClase, DtFecha fecha)
                     else
                     {
                         Inscripcion *inscr = new Inscripcion(fecha, socios[iterSocio]);
-                        clases[iterClase]->setInscripcion(*inscr);
+                        clases[iterClase]->setInscripcion(inscr);
                         cout << "\n   OK - La inscripcion de '" << ciSocio << "' a la clase '" << idClase << "' fue agregada correctamente." << '\n';
                     }
                 }
@@ -302,13 +302,15 @@ void Sistema::obtenerClase(int idClase)
         if (encontrado) // Si se encontró la clase
         {
 
-            if (typeid(*clases[pos]) == typeid(Spinning))
+            // if (typeid(*clases[pos]) == typeid(Spinning))
+            if (Spinning* d = dynamic_cast<Spinning*>(clases[pos]); d != nullptr)
             {
                 DtSpinning *clase = dynamic_cast<DtSpinning *>(clases[pos]);
                 DtSpinning *csp = new DtSpinning(clase->getId(), clase->getNombre(), clase->getTurno(), clase->getCantBicicletas());
                 cout << csp << endl;
             }
-            else if (typeid(*clases[pos]) == typeid(Entrenamiento))
+            // else if (typeid(*clases[pos]) == typeid(Entrenamiento))
+            else if (Entrenamiento* d = dynamic_cast<Entrenamiento*>(clases[pos]); d != nullptr)
             {
                 Entrenamiento *clase = dynamic_cast<Entrenamiento *>(clases[pos]);
                 DtEntrenamiento *centr = new DtEntrenamiento(clase->getId(), clase->getNombre(), clase->getTurno(), clase->getEnRambla());
