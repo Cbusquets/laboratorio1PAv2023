@@ -45,9 +45,12 @@ int main()
             cout << "\nIngrese los siguientes datos por favor:\n";
             cout << "---------------------------------------\n\n";
             cout << "Ingrese la cedula del socio: ";
-            cin >> ciSocio;
+            getStringInput(ciSocio);
+            //cin >> ciSocio;
             cout << "Ingrese el nombre del socio: ";
-            cin >> nombreSocio;
+            getStringInput(nombreSocio);
+
+            //cin >> nombreSocio;
 
             try
             {
@@ -72,15 +75,18 @@ int main()
             cout << "\nIngrese los siguientes datos por favor:\n";
             cout << "---------------------------------------\n\n";
             cout << "Ingresa id de la clase: ";
-            cin >> idClase;
+            getIntegerInput(idClase);
+            //cin >> idClase;
             cout << "Ingresa el nombre de la clase: ";
-            cin >> nombreClase;
+            getStringInput(nombreClase);
+            //cin >> nombreClase;
 
             // Solicita el turno
             do
             {
                 cout << "Ingrese el turno: \n   1) Mañana \n   2) Tarde \n   3) Noche\n";
-                cin >> idTurno;
+                getIntegerInput(idTurno);
+                //cin >> idTurno;
             } while ((idTurno < 1) || (idTurno > 3));
 
             if (idTurno == 1)
@@ -100,19 +106,30 @@ int main()
             do
             {
                 cout << "Ingrese el tipo de clase: \n   1) Spinning \n   2) Entrenamiento\n";
-                cin >> idTipoClase;
+                getIntegerInput(idTipoClase);
+                //cin >> idTipoClase;
             } while ((idTipoClase < 1) || (idTipoClase > 2));
 
             // Crea el tipo de clase especifico
             if (idTipoClase == 1)
             { // Crear clase Spinning
                 int cantBicis;
+                bool error = false;
 
                 do
                 {
-                    cout << "Ingrese la cantidad de bicis, con un máximo de 50: ";
-                    cin >> cantBicis;
+                    if (!error)
+                    {
+                        cout << "Ingrese la cantidad de bicis, con un máximo de 50: ";
+                    }
+                    getIntegerInput(cantBicis);
+                    //cin >> cantBicis;
 
+                    if ((cantBicis > 50) || (cantBicis < 1))
+                    {   error = true;
+                        cout << "Error, ingrese un numero entre 1 y 50 \n ";
+                    }
+                    
                 } while ((cantBicis > 50) || (cantBicis < 1));
 
                 cSpinning = DtSpinning(idClase, nombreClase, turno, cantBicis);
@@ -134,7 +151,8 @@ int main()
                 do
                 {
                     cout << "¿Deseas que la clase sea en la rambla? \n   1) Sí \n   2) No \n";
-                    cin >> intEnRambla;
+                    getIntegerInput(intEnRambla);
+                    //cin >> intEnRambla;
                 } while ((intEnRambla < 1) || (intEnRambla > 2));
 
                 if (intEnRambla == 1)
